@@ -1,0 +1,125 @@
+# ---------------------------------------------------------------------------
+# 사이트 전체 설정 (Minimal Mistakes 테마)
+#
+#  - 이 파일을 고친 뒤에는 로컬 미리보기 서버를 껐다 켜야 반영됩니다.
+#  - 테마 옵션 전체 목록: https://mmistakes.github.io/minimal-mistakes/docs/configuration/
+# ---------------------------------------------------------------------------
+
+# 기본 정보 -----------------------------------------------------------------
+title: Jaewon Seo
+name: Jaewon Seo
+email: seojw115@gmail.com
+description: >-
+  Jaewon Seo — B.S. student in Industrial and Management Engineering & Mathematics
+  at POSTECH. CV, paper reviews, and project notes.
+url: https://DDungjae.github.io # 사이트 주소 (개인 사이트라 baseurl 은 비워둡니다)
+baseurl: ""
+repository: DDungjae/DDungjae.github.io
+github_username: DDungjae
+locale: en-US
+timezone: Asia/Seoul
+
+# 테마 ----------------------------------------------------------------------
+remote_theme: mmistakes/minimal-mistakes@4.28.1 # 테마 버전 고정. 올리고 싶으면 숫자만 바꾸세요
+minimal_mistakes_skin: default # default, air, aqua, contrast, dark, dirt, neon, mint, plum, sunrise, catppuccin_latte, catppuccin_mocha
+search: true # 상단 메뉴의 검색 아이콘
+breadcrumbs: false
+words_per_minute: 160
+
+# 빌드 ----------------------------------------------------------------------
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax # 글에 $$...$$ 수식을 쓸 수 있습니다
+permalink: /posts/:title/ # 글 주소: /posts/파일이름에서-날짜를-뺀-부분/
+include:
+  - _pages
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - README.md
+  - preview.bat
+
+plugins:
+  - jekyll-remote-theme # remote_theme 를 로컬에서도 쓰기 위해 필요
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+  - jekyll-redirect-from
+
+# 컬렉션: _projects/ 폴더의 파일 하나가 프로젝트 하나 -------------------------
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# 왼쪽 사이드바 프로필 ------------------------------------------------------
+author:
+  name: "Jaewon Seo"
+  avatar: "/assets/images/profile.jpg"
+  bio: "B.S. student in Industrial and Management Engineering & Mathematics, POSTECH"
+  location: "Pohang, Republic of Korea"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:seojw115@gmail.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/DDungjae"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/930geo"
+
+# 페이지 맨 아래 푸터 -------------------------------------------------------
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/DDungjae"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/930geo"
+
+# 종류별 기본값 (글마다 front matter 에 안 적어도 아래 값이 적용됩니다) ---------
+defaults:
+  # _posts/ 의 글
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
+      toc: true
+      toc_sticky: true
+  # _pages/ 의 페이지
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  # _projects/ 의 프로젝트
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single
+      author_profile: true
+      share: true
+
+# 글 분류 페이지 (/categories/, /tags/) --------------------------------------
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
