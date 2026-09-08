@@ -59,6 +59,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  lectures: # _lectures/<과목>/<노트>.md → /lectures/<과목>/<노트>/
+    output: true
+    permalink: /lectures/:path/
 
 # 왼쪽 사이드바 프로필 ------------------------------------------------------
 author:
@@ -117,6 +120,17 @@ defaults:
       layout: single
       author_profile: false # 프로젝트 본문에서도 숨김
       share: true
+  # _lectures/ 의 강의 노트
+  - scope:
+      path: ""
+      type: lectures
+    values:
+      layout: single
+      author_profile: false
+      toc: true
+      toc_sticky: true
+      sidebar:
+        nav: "lectures" # 왼쪽에 과목 목차
 
 # 글 분류 페이지 (/categories/, /tags/) --------------------------------------
 category_archive:

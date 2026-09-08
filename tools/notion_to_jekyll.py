@@ -7,7 +7,9 @@
     python tools/notion_to_jekyll.py <노션 export .zip | .md 파일 | 폴더> [옵션]
 
 옵션
-    --type post|project     post(기본) 는 _posts/, project 는 _projects/ 에 만듭니다
+    --type post|project|lecture
+                            post(기본) 는 _posts/, project 는 _projects/, lecture 는 _lectures/<과목>/ 에 만듭니다
+    --course MATH530        lecture 의 과목 코드 (노션 Course 속성으로 대신할 수 있음)
     --date YYYY-MM-DD       글 날짜 (없으면 노션의 Date/Created 속성, 그것도 없으면 오늘)
     --slug SLUG             파일 이름과 주소에 쓸 이름 (없으면 제목에서 만듭니다)
     --categories a,b        카테고리 (없으면 노션의 Category 속성)
@@ -47,7 +49,7 @@ KNOWN_PROPS = {
     "tags", "tag", "category", "categories", "date", "created", "created time",
     "published", "status", "excerpt", "summary", "description", "type", "slug",
     "lang", "language", "last edited time", "author", "url",
-    "authors", "venue", "year", "paper", "journal", "conference",
+    "authors", "venue", "year", "paper", "journal", "conference", "course",
 }
 
 NOTION_ID_RE = re.compile(r"\s+[0-9a-f]{32}$")
@@ -361,7 +363,8 @@ def yaml_list(items: list[str]) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("source")
-    ap.add_argument("--type", choices=["post", "project"], default="post")
+    ap.add_argument("--type", choices=["post", "project", "lecture"], default="post")
+    ap.add_argument("--course", help="--type lecture 일 때 과목 코드 (예: MATH530). _lectures/<과목>/ 아래에 만듭니다")
     ap.add_argument("--date")
     ap.add_argument("--slug")
     ap.add_argument("--categories")
@@ -392,9 +395,16 @@ def main() -> None:
         categories = split_list(args.categories) or split_list(props.get("category") or props.get("categories"))
         tags = split_list(args.tags) or split_list(props.get("tags") or props.get("tag"))
 
+        course = (args.course or props.get("course") or "").strip()
         if args.type == "post":
             out_path = site / "_posts" / f"{date:%Y-%m-%d}-{slug}.md"
             url = f"/posts/{slug}/"
+        elif args.type == "lecture":
+            if not course:
+                sys.exit("[X] --type lecture 에는 --course 가 필요합니다 (예: --course MATH530)")
+            course_slug = slugify(course)
+            out_path = site / "_lectures" / course_slug / f"{slug}.md"
+            url = f"/lectures/{course_slug}/{slug}/"
         else:
             out_path = site / "_projects" / f"{slug}.md"
             url = f"/projects/{slug}/"
@@ -409,8 +419,10 @@ def main() -> None:
         teaser = next((f"{asset_url}/{f}" for f in copied if Path(f).suffix.lower() in IMAGE_EXTS), None)
 
         fm = ["---", f"title: {yaml_str(title)}"]
-        if args.type == "post":
+        if args.type in ("post", "lecture"):
             fm.append(f"date: {date:%Y-%m-%d}")
+        if args.type == "lecture":
+            fm.append(f"course: {yaml_str(course)}")
         if excerpt:
             fm.append(f"excerpt: {yaml_str(excerpt)}")
         if categories:
@@ -425,7 +437,7 @@ def main() -> None:
         ignored = {k: v for k, v in props.items()
                    if k not in ("tags", "tag", "category", "categories", "date", "published", "created",
                                 "created time", "excerpt", "summary", "description", "slug",
-                                "authors", "author", "venue", "conference", "journal", "year")}
+                                "authors", "author", "venue", "conference", "journal", "year", "course")}
 
         log(f"[i] 원본      : {md_path.name}")
         log(f"[i] 제목      : {title}")

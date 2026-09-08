@@ -49,6 +49,9 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
 
 - 논문 리뷰·공부 기록·일지 → `--type post` (기본값). `_posts/YYYY-MM-DD-slug.md`, 주소 `/posts/slug/`
 - 결과물 소개(대회, 과제, 사이드 프로젝트) → `--type project`. `_projects/slug.md`, 주소 `/projects/slug/`
+- 수업 노트 → `--type lecture --course MATH530`. `_lectures/math530/slug.md`, 주소 `/lectures/math530/slug/`.
+  과목 페이지(`_pages/lectures/<과목>.md`)와 `_data/navigation.yml` 의 lectures 목차에 그 과목이 없으면 둘 다 추가합니다
+  (MATH530 페이지를 복사해 title/permalink/course 만 바꾸면 됨).
 - 사용자의 말에서 분명하지 않으면 제목과 내용을 보고 정하되, 결과를 알릴 때 어느 쪽으로 넣었는지 말합니다.
 
 ## 3. 먼저 dry-run

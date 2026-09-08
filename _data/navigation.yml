@@ -2,7 +2,18 @@
 main:
   - title: "About"
     url: /
-  - title: "Posts"
+  - title: "Paper Review"
     url: /posts/
+  - title: "Lectures"
+    url: /lectures/
   - title: "Projects"
     url: /projects/
+
+# 강의 페이지 왼쪽에 보이는 과목 목차. 과목을 추가하려면 여기에 한 줄 추가하고
+# _pages/lectures/<과목>.md 를 하나 더 만들면 됩니다.
+lectures:
+  - title: "Lectures"
+    url: /lectures/
+    children:
+      - title: "MATH530"
+        url: /lectures/math530/

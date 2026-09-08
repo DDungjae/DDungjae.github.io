@@ -14,6 +14,8 @@ GitHub Pages 에서 그대로 빌드합니다. 주소: **https://DDungjae.github
 | 소개글, CV (첫 화면) | `index.md` |
 | 글 쓰기 | `_posts/YYYY-MM-DD-제목.md` (예시: `_drafts/2026-09-08-example-post.md` 복사) |
 | 프로젝트 추가 | `_projects/이름.md` (아래 예시) |
+| 강의 노트 추가 | `_lectures/math530/이름.md` (front matter 에 `course: MATH530`, `date:`) |
+| 강의 과목 추가 | `_pages/lectures/<과목>.md` 를 복사해 만들고 `_data/navigation.yml` 의 lectures 목차에 한 줄 추가 |
 | 이름·한 줄 소개·이메일·링크 (왼쪽 사이드바) | `_config.yml` 의 `author:` |
 | 프로필 사진 | `assets/images/profile.jpg` 를 교체 |
 | 상단 메뉴 | `_data/navigation.yml` |
@@ -61,7 +63,8 @@ header:
 - **Claude 에게 맡기기**: Claude Code 에서 `/notion-import "zip 경로"` 라고 하거나
   "다운로드 폴더의 노션 글 올려줘" 라고 하면 변환 → 빌드 확인 → (요청 시) 푸시까지 합니다.
 - **직접 하기**: zip 을 `notion-import.bat` 위에 끌어다 놓으면 미리보기를 보여주고 `_posts/` 에 만듭니다.
-  프로젝트로 넣으려면 `notion-import.bat "zip 경로" project`.
+  프로젝트로 넣으려면 `notion-import.bat "zip 경로" project`, 강의 노트는
+  `python tools/notion_to_jekyll.py "zip 경로" --type lecture --course MATH530`.
 - 내부 동작은 `tools/notion_to_jekyll.py` 입니다. `python tools/notion_to_jekyll.py --help` 로 옵션을 볼 수 있습니다.
 
 노션 페이지에 `Tags`, `Category`, `Date` 속성이 있으면 그대로 front matter 로 들어갑니다.
