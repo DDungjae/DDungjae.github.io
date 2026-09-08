@@ -95,7 +95,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false # 글 본문에서는 왼쪽 프로필 사이드바를 숨김
       read_time: true
       comments: false
       share: true
@@ -115,7 +115,7 @@ defaults:
       type: projects
     values:
       layout: single
-      author_profile: true
+      author_profile: false # 프로젝트 본문에서도 숨김
       share: true
 
 # 글 분류 페이지 (/categories/, /tags/) --------------------------------------
