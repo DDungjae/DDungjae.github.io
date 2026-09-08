@@ -17,7 +17,11 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
 2. `mcp__notion__notion-fetch` 로 본문을 받습니다. `<content>` 안이 노션식 마크다운입니다.
 3. 짧은 경로의 임시 폴더(예: `%TEMP%\notion-<slug>\`)에 `.md` 파일 하나를 만듭니다. 형식은 zip export 와 같게:
    - 첫 줄 `# <제목>` (노션 제목의 오탈자는 고치되 사용자에게 알림)
-   - 빈 줄, 그 다음 `Tags: ...`, `Category: ...`, `Date: Month D, YYYY` 속성 줄 (fetch 결과의 properties 에서. 없으면 내용을 보고 제안)
+   - 빈 줄, 그 다음 속성 줄. fetch 결과 `<properties>` JSON 을 이렇게 옮깁니다 ("Paper Reviews" 데이터베이스 기준):
+     `Authors` → `Authors: ...`, `Venue` → `Venue: ...`, `Year` → `Year: 2022`, `Tags` 배열 → `Tags: a, b`,
+     `Category` → `Category: ...`, `date:Date:start` → `Date: 2026-09-08`. `Paper` 링크는 본문 첫 줄에
+     `[url](url)` 로 넣되 본문에 이미 같은 링크가 있으면 생략. 데이터베이스 밖의 일반 페이지는 속성이 title 뿐이니
+     내용을 보고 Tags/Category 를 제안하고 Authors/Venue/Year 는 논문을 확인해 채웁니다.
    - 빈 줄, 그 다음 본문. `<empty-block/>` 같은 태그는 지우고, `![](https://prod-files-secure...)` 이미지의 빈 alt 는 짧은 설명으로 채웁니다.
 4. 이미지 URL 은 **5분 뒤 만료**됩니다. fetch 직후 바로 변환합니다:
    ```bash
