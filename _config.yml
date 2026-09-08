@@ -99,6 +99,7 @@ defaults:
     values:
       layout: single
       author_profile: false # 글 본문에서는 왼쪽 프로필 사이드바를 숨김
+      classes: [no-sidebar] # 비는 왼쪽 자리를 본문이 씀 (assets/css/main.scss)
       read_time: true
       comments: false
       share: true
@@ -119,6 +120,7 @@ defaults:
     values:
       layout: single
       author_profile: false # 프로젝트 본문에서도 숨김
+      classes: [no-sidebar]
       share: true
   # _lectures/ 의 강의 노트
   - scope:

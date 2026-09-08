@@ -29,3 +29,12 @@
     max-width: 200px;
   }
 }
+
+// 왼쪽 사이드바(프로필/과목 목차)가 없는 페이지: 그 자리까지 본문을 넓힘.
+// 테마는 사이드바가 없어도 왼쪽 열을 비워 두므로, classes: [no-sidebar] 를 준 페이지에서만 해제합니다.
+.no-sidebar .page,
+.no-sidebar .archive {
+  @include breakpoint($large) {
+    width: 100%;
+  }
+}

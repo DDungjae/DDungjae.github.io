@@ -3,5 +3,6 @@
 title: "Paper Review"
 permalink: /posts/
 layout: posts
-author_profile: true
+author_profile: false
+classes: [no-sidebar] # 왼쪽 사이드바 자리를 본문이 씀
 ---

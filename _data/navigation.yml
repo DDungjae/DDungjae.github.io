@@ -15,5 +15,7 @@ lectures:
   - title: "Lectures"
     url: /lectures/
     children:
-      - title: "MATH530"
+      - title: "MATH530 - Mathematical Statistics"
         url: /lectures/math530/
+      - title: "MATH442 - Mathematics for AI"
+        url: /lectures/math442/

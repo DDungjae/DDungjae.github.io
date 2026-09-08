@@ -5,5 +5,6 @@ permalink: /projects/
 layout: collection
 collection: projects
 entries_layout: grid # grid(카드) 또는 list(목록)
-author_profile: true
+author_profile: false
+classes: [no-sidebar] # 왼쪽 사이드바 자리를 본문이 씀
 ---

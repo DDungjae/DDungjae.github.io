@@ -40,7 +40,9 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
 - `Paper Reviews` 데이터베이스 (collection 9ea357cf-0a50-4c10-9a65-ba5e881dab9a): 논문 리뷰 한 줄 = 글 하나 → `--type post`
 - `Lectures` 데이터베이스 (collection 9473503b-8caf-48fb-9848-26c7171401cf): 한 줄 = 과목 (예: MATH530 페이지).
   과목 페이지 안에 `<과목> Notes` 데이터베이스가 있고 (MATH530 Notes: collection 4da3c0d6-e1dd-4360-b12d-c91300bcc0ce),
-  그 한 줄 = 노트 하나 → `--type lecture --course <과목>`. fetch 결과의 `Course` 속성이나 ancestor-path 의 과목 페이지 제목으로 과목을 알 수 있습니다.
+  그 한 줄 = 노트 하나 → `--type lecture --course <과목코드>`. 과목 코드는 fetch 결과의 `Course` 속성 (예: MATH530) 을 씁니다.
+  과목 페이지 제목은 "MATH530 - Mathematical Statistics" 처럼 긴 이름이니 거기서 가져올 때는 대시 앞의 코드만 씁니다.
+  현재 과목: MATH530 (Notes DB collection 4da3c0d6-e1dd-4360-b12d-c91300bcc0ce), MATH442.
   `Week` 속성은 front matter 에 넣지 않습니다 (제목에 이미 들어감).
 - 새 과목이 생기면: 노션에 과목 페이지 + Notes DB 를 같은 형태로 만들고, 사이트에는 `_pages/lectures/<과목>.md` 와 navigation.yml 항목을 추가합니다.
 
