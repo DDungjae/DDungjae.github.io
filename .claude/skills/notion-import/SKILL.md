@@ -36,6 +36,14 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
 이 형식을 자동으로 만듭니다. 속성이 비어 있으면 논문을 확인해 `--excerpt "Jason Wei et al., NeurIPS 2022"` 로 넣고,
 **내용을 요약한 문장은 쓰지 않습니다** (사용자 결정).
 
+**노션 쪽 구조** (모두 "Github Posts" 페이지 아래):
+- `Paper Reviews` 데이터베이스 (collection 9ea357cf-0a50-4c10-9a65-ba5e881dab9a): 논문 리뷰 한 줄 = 글 하나 → `--type post`
+- `Lectures` 데이터베이스 (collection 9473503b-8caf-48fb-9848-26c7171401cf): 한 줄 = 과목 (예: MATH530 페이지).
+  과목 페이지 안에 `<과목> Notes` 데이터베이스가 있고 (MATH530 Notes: collection 4da3c0d6-e1dd-4360-b12d-c91300bcc0ce),
+  그 한 줄 = 노트 하나 → `--type lecture --course <과목>`. fetch 결과의 `Course` 속성이나 ancestor-path 의 과목 페이지 제목으로 과목을 알 수 있습니다.
+  `Week` 속성은 front matter 에 넣지 않습니다 (제목에 이미 들어감).
+- 새 과목이 생기면: 노션에 과목 페이지 + Notes DB 를 같은 형태로 만들고, 사이트에는 `_pages/lectures/<과목>.md` 와 navigation.yml 항목을 추가합니다.
+
 ## 1. 입력 찾기 (zip 으로 받은 경우)
 
 - 사용자가 경로를 주면 그것을 씁니다. `$ARGUMENTS` 에 경로가 들어올 수 있습니다.
