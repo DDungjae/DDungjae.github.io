@@ -19,3 +19,13 @@
     font-size: 1em; // 중첩 목록이 더 작아지지 않도록
   }
 }
+
+// 왼쪽 사이드바 프로필 사진: 테마 기본값(110px)보다 크게
+.author__avatar img {
+  @include breakpoint($large) {
+    max-width: 160px;
+  }
+  @include breakpoint($x-large) {
+    max-width: 200px;
+  }
+}
