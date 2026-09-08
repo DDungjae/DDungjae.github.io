@@ -47,6 +47,7 @@ KNOWN_PROPS = {
     "tags", "tag", "category", "categories", "date", "created", "created time",
     "published", "status", "excerpt", "summary", "description", "type", "slug",
     "lang", "language", "last edited time", "author", "url",
+    "authors", "venue", "year", "paper", "journal", "conference",
 }
 
 NOTION_ID_RE = re.compile(r"\s+[0-9a-f]{32}$")
@@ -312,6 +313,24 @@ def transform_body(body: str, md_path: Path, asset_dir: Path, asset_url: str,
     return text, copied, warnings
 
 
+def citation_line(props: dict[str, str]) -> str:
+    """논문 리뷰용 한 줄 요약: "Jason Wei et al., NeurIPS 2022".
+    Authors / Venue(또는 Journal, Conference) / Year 속성이 있을 때만 만듭니다."""
+    authors = props.get("authors") or props.get("author") or ""
+    venue = props.get("venue") or props.get("conference") or props.get("journal") or ""
+    year = props.get("year") or ""
+    if not authors and not venue:
+        return ""
+    names = [a.strip() for a in re.split(r"[,;]| and ", authors) if a.strip()]
+    if len(names) > 3 and not names[0].lower().endswith("et al."):
+        authors = f"{names[0]} et al."
+    elif names:
+        authors = ", ".join(names)
+    year = re.sub(r"\.0$", "", year.strip())  # 노션 숫자 속성이 2022.0 으로 올 때
+    right = " ".join(x for x in (venue.strip(), year) if x)
+    return ", ".join(x for x in (authors, right) if x)
+
+
 def first_paragraph(body: str, limit: int = 160) -> str:
     body = re.sub(r"^\{% (raw|endraw) %\}\s*$", "", body, flags=re.MULTILINE)
     for block in re.split(r"\n\s*\n", body):
@@ -386,7 +405,7 @@ def main() -> None:
                                                     download_images=args.download_images)
 
         excerpt = args.excerpt or props.get("excerpt") or props.get("summary") or props.get("description") \
-            or first_paragraph(new_body)
+            or citation_line(props) or first_paragraph(new_body)
         teaser = next((f"{asset_url}/{f}" for f in copied if Path(f).suffix.lower() in IMAGE_EXTS), None)
 
         fm = ["---", f"title: {yaml_str(title)}"]
@@ -405,7 +424,8 @@ def main() -> None:
 
         ignored = {k: v for k, v in props.items()
                    if k not in ("tags", "tag", "category", "categories", "date", "published", "created",
-                                "created time", "excerpt", "summary", "description", "slug")}
+                                "created time", "excerpt", "summary", "description", "slug",
+                                "authors", "author", "venue", "conference", "journal", "year")}
 
         log(f"[i] 원본      : {md_path.name}")
         log(f"[i] 제목      : {title}")
