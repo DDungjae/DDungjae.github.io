@@ -1,7 +1,7 @@
 ---
 title: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
 date: 2026-09-08
-excerpt: "Wei et al. (2022) 논문 리뷰. 풀이 과정을 프롬프트에 포함하는 chain-of-thought 프롬프팅으로 파인튜닝 없이 LLM의 산술·상식·기호 추론 성능을 끌어올린 연구."
+excerpt: "Jason Wei et al., NeurIPS 2022"
 categories: ["paper-review"]
 tags: ["llm", "prompting", "reasoning", "chain-of-thought"]
 header:
