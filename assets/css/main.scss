@@ -1,0 +1,21 @@
+---
+# 테마의 기본 스타일 위에 이 사이트만의 조정을 덧붙이는 파일입니다.
+# (파일 이름과 위 두 줄의 --- 는 그대로 두세요)
+---
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // 색 테마
+@import "minimal-mistakes"; // 테마 본체
+
+// 본문 글자 크기: 기본값보다 한 단계 작게 (테마의 notice 상자와 같은 크기)
+.page__content {
+  p,
+  li,
+  dl {
+    font-size: $type-size-6;
+  }
+
+  li li {
+    font-size: 1em; // 중첩 목록이 더 작아지지 않도록
+  }
+}

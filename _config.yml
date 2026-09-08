@@ -8,7 +8,7 @@
 # 기본 정보 -----------------------------------------------------------------
 title: Jaewon Seo
 name: Jaewon Seo
-email: seojw115@gmail.com
+email: seojw115@postech.ac.kr
 description: >-
   Jaewon Seo — B.S. student in Industrial and Management Engineering & Mathematics
   at POSTECH. CV, paper reviews, and project notes.
@@ -67,7 +67,7 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope"
-      url: "mailto:seojw115@gmail.com"
+      url: "mailto:seojw115@postech.ac.kr"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/DDungjae"
