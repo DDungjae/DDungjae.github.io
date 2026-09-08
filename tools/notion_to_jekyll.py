@@ -187,21 +187,47 @@ def clean_asset_name(name: str, used: set[str]) -> str:
 # ---------------------------------------------------------------------------
 # 본문 변환
 # ---------------------------------------------------------------------------
+def _looks_like_file(url: str) -> bool:
+    path = urllib.parse.urlparse(url).path
+    return Path(path).suffix.lower() in IMAGE_EXTS | {".pdf", ".zip", ".csv", ".txt", ".ipynb"}
+
+
+def _download(url: str, warnings: list[str]) -> Path | None:
+    """노션 API 가 주는 임시(서명된) 이미지 URL 을 내려받아 임시 파일 경로를 돌려줍니다."""
+    import urllib.request
+    name = Path(urllib.parse.unquote(urllib.parse.urlparse(url).path)).name or "file"
+    tmp = Path(tempfile.mkdtemp(prefix="notion-img-")) / name
+    try:
+        with urllib.request.urlopen(url, timeout=60) as resp, open(tmp, "wb") as fh:
+            shutil.copyfileobj(resp, fh)
+    except Exception as e:  # noqa: BLE001
+        warnings.append(f"이미지를 내려받지 못해 링크를 그대로 둡니다 (URL 만료?): {url[:80]}… ({e})")
+        return None
+    return tmp
+
+
 def transform_body(body: str, md_path: Path, asset_dir: Path, asset_url: str,
-                   dry_run: bool) -> tuple[str, list[str], list[str]]:
+                   dry_run: bool, download_images: bool = False) -> tuple[str, list[str], list[str]]:
     """본문을 고치고 (새 본문, 복사한 파일 목록, 경고 목록) 을 돌려줍니다."""
     warnings: list[str] = []
     copied: list[str] = []
     used_names: set[str] = set()
 
     def relocate(target: str) -> str | None:
-        if re.match(r"^[a-z][a-z0-9+.-]*:", target) or target.startswith(("#", "/")):
-            return None  # http:, mailto:, 앵커, 절대경로는 그대로
-        rel = urllib.parse.unquote(target.split("#")[0])
-        src = (md_path.parent / rel)
-        if not src.is_file():
-            warnings.append(f"파일을 찾지 못해 링크를 그대로 둡니다: {target}")
-            return None
+        if target.startswith(("http://", "https://")):
+            if not download_images or not _looks_like_file(target):
+                return None  # 외부 링크는 그대로
+            src = _download(target, warnings)
+            if src is None:
+                return None
+        elif re.match(r"^[a-z][a-z0-9+.-]*:", target) or target.startswith(("#", "/")):
+            return None  # mailto:, 앵커, 절대경로는 그대로
+        else:
+            rel = urllib.parse.unquote(target.split("#")[0])
+            src = (md_path.parent / rel)
+            if not src.is_file():
+                warnings.append(f"파일을 찾지 못해 링크를 그대로 둡니다: {target}")
+                return None
         new_name = clean_asset_name(src.name, used_names)
         if not dry_run:
             asset_dir.mkdir(parents=True, exist_ok=True)
@@ -230,7 +256,8 @@ def transform_body(body: str, md_path: Path, asset_dir: Path, asset_url: str,
 
     out: list[str] = []
     in_code = False
-    has_heading = any(re.match(r"^#{1,6} ", l) for l in body.splitlines())
+    # 본문에 h1(# ) 이 있을 때만 제목 단계를 한 단계 내림. (zip export 는 h1 부터, MCP fetch 는 h2 부터 나옴)
+    has_heading = any(re.match(r"^# ", l) for l in body.splitlines())
     lines = body.splitlines()
     i = 0
     while i < len(lines):
@@ -321,6 +348,8 @@ def main() -> None:
     ap.add_argument("--categories")
     ap.add_argument("--tags")
     ap.add_argument("--excerpt")
+    ap.add_argument("--download-images", action="store_true",
+                    help="본문의 http(s) 이미지·첨부를 내려받아 assets/ 에 저장 (노션 MCP 로 가져온 글용. URL 이 5분 만에 만료되니 바로 실행)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--site")
@@ -353,7 +382,8 @@ def main() -> None:
 
         asset_dir = site / "assets" / "images" / slug
         asset_url = f"/assets/images/{slug}"
-        new_body, copied, warnings = transform_body(body, md_path, asset_dir, asset_url, args.dry_run)
+        new_body, copied, warnings = transform_body(body, md_path, asset_dir, asset_url, args.dry_run,
+                                                    download_images=args.download_images)
 
         excerpt = args.excerpt or props.get("excerpt") or props.get("summary") or props.get("description") \
             or first_paragraph(new_body)

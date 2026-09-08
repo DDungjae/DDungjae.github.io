@@ -8,7 +8,27 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
 변환 자체는 `tools/notion_to_jekyll.py` 가 합니다. 이 스킬은 그 스크립트를 어떤 순서로 쓰고
 무엇을 확인해야 하는지 정리한 것입니다. 사이트는 Jekyll + Minimal Mistakes (remote theme) 입니다.
 
-## 1. 입력 찾기
+## 0. 노션 MCP 가 연결되어 있으면 (zip 없이 바로)
+
+`mcp__notion__notion-fetch` 도구가 있으면 zip 을 받을 필요가 없습니다. `$ARGUMENTS` 가 노션 URL 이거나
+사용자가 페이지 제목을 말하면 이 길로 갑니다.
+
+1. URL 이 없으면 `mcp__notion__notion-search` 로 제목을 찾아 **어느 페이지인지 사용자에게 보여줍니다**.
+2. `mcp__notion__notion-fetch` 로 본문을 받습니다. `<content>` 안이 노션식 마크다운입니다.
+3. 짧은 경로의 임시 폴더(예: `%TEMP%\notion-<slug>\`)에 `.md` 파일 하나를 만듭니다. 형식은 zip export 와 같게:
+   - 첫 줄 `# <제목>` (노션 제목의 오탈자는 고치되 사용자에게 알림)
+   - 빈 줄, 그 다음 `Tags: ...`, `Category: ...`, `Date: Month D, YYYY` 속성 줄 (fetch 결과의 properties 에서. 없으면 내용을 보고 제안)
+   - 빈 줄, 그 다음 본문. `<empty-block/>` 같은 태그는 지우고, `![](https://prod-files-secure...)` 이미지의 빈 alt 는 짧은 설명으로 채웁니다.
+4. 이미지 URL 은 **5분 뒤 만료**됩니다. fetch 직후 바로 변환합니다:
+   ```bash
+   python tools/notion_to_jekyll.py "<임시 .md>" --type post --download-images --slug <slug> [--excerpt "..."]
+   ```
+   만료 경고가 나오면 fetch 를 다시 해서 새 URL 로 반복합니다.
+5. 이후는 아래 5번(빌드 확인)부터 동일합니다.
+
+첫 문단이 논문 링크뿐인 리뷰 글은 excerpt 가 링크가 되어 버리니 `--excerpt` 로 한 줄 요약을 꼭 넣습니다.
+
+## 1. 입력 찾기 (zip 으로 받은 경우)
 
 - 사용자가 경로를 주면 그것을 씁니다. `$ARGUMENTS` 에 경로가 들어올 수 있습니다.
 - 경로가 없으면 다운로드 폴더에서 가장 최근 노션 export 를 찾아 **어느 파일인지 사용자에게 보여주고** 씁니다.
