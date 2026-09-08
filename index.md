@@ -31,7 +31,7 @@ and the CV below. The fastest way to reach me is email.
 ## Experience
 
 - **Artificial Intelligence Engineer Intern**, Samsung Fire & Marine Insurance, Jun–Aug 2026
-- **Software Engineer Intern**, Nadumodu Inc., Jan–Jun 2026
+- **Software Engineer Intern**, Nadoomodoo Inc., Jan–Jun 2026
 - **Undergraduate Researcher**, Financial Big-Data Analysis Laboratory (FBDA Lab), POSTECH, Jun–Jul 2025
 - **Undergraduate Researcher**, Statistics and Data Science Laboratory (SDS Lab), POSTECH, Dec 2024–Feb 2025
 
