@@ -41,6 +41,8 @@ exclude:
   - node_modules
   - README.md
   - preview.bat
+  - notion-import.bat
+  - tools
 
 plugins:
   - jekyll-remote-theme # remote_theme 를 로컬에서도 쓰기 위해 필요

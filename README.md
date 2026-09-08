@@ -54,6 +54,19 @@ header:
 프로젝트 설명. 마크다운 그대로.
 ```
 
+## 노션에서 쓴 글 올리기
+
+노션에서 글을 쓴 뒤 **… → Export → Markdown & CSV** (Include content: Everything) 로 zip 을 받습니다.
+
+- **Claude 에게 맡기기**: Claude Code 에서 `/notion-import "zip 경로"` 라고 하거나
+  "다운로드 폴더의 노션 글 올려줘" 라고 하면 변환 → 빌드 확인 → (요청 시) 푸시까지 합니다.
+- **직접 하기**: zip 을 `notion-import.bat` 위에 끌어다 놓으면 미리보기를 보여주고 `_posts/` 에 만듭니다.
+  프로젝트로 넣으려면 `notion-import.bat "zip 경로" project`.
+- 내부 동작은 `tools/notion_to_jekyll.py` 입니다. `python tools/notion_to_jekyll.py --help` 로 옵션을 볼 수 있습니다.
+
+노션 페이지에 `Tags`, `Category`, `Date` 속성이 있으면 그대로 front matter 로 들어갑니다.
+이미지는 `assets/images/<글 이름>/` 에 복사되고, 수식(`$x$`, `$$…$$`)은 MathJax 로 표시됩니다.
+
 ## 로컬 미리보기
 
 `preview.bat` 을 더블클릭하면 http://localhost:4000 에서 확인할 수 있습니다.

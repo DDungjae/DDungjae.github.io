@@ -1,0 +1,15 @@
+<!-- MathJax: 글 안의 수식($$ ... $$)을 브라우저에서 그립니다. kramdown 이 \( \) / \[ \] 로 바꿔 놓은 것을 읽습니다. -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [["\\(", "\\)"], ["$", "$"]],
+      displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+      processEscapes: true,
+      tags: "ams"
+    },
+    options: {
+      skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
