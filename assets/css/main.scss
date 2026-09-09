@@ -38,3 +38,17 @@
     width: 100%;
   }
 }
+
+// 오른쪽 목차("On this page")를 본문에서 조금 더 떨어뜨림. 기본값은 본문 끝에서 1em.
+.sidebar__right {
+  @include breakpoint($large) {
+    padding-inline-start: 2.5em;
+  }
+}
+
+// 긴 블록 수식이 본문 폭을 넘어 목차 아래로 흘러가지 않도록, 수식 안에서 가로 스크롤
+mjx-container[jax="CHTML"][display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
