@@ -10,7 +10,7 @@ header:
 
 [https://arxiv.org/pdf/2201.11903](https://arxiv.org/pdf/2201.11903)
 
-## 1. Introduction
+## Introduction
 
 언어 모델의 크기를 키우는 것(파라미터 수가 증가하는 것)은 모델 성능 향상과 학습 효율성을 가져오기는 하지만, 연산이나 상식, 기호 추론과 같은 문제를 해결 하기에는 여전히 한계가 있다. 이러한 문제를 다음과 같은 방법으로 해결하려는 시도가 있었지만 여전히 한계를 가진다.
 
@@ -28,7 +28,7 @@ header:
 
 이러한 chain of thought 프롬프팅은 추가 학습 없이 범용적인 문제에 대해서 자연어 설명 만으로 LLM의 성능을 끌어올린다는 점에서 의의를 가진다.
 
-## 2. Chain-of-Thought Prompting
+## Chain-of-Thought Prompting
 
 Chain of thought 프롬프팅은 수학문제를 풀 때 풀이과정을 적는 것처럼 LLM이 사고 과정을 최종 출력에 포함할 수 있도록 한다. Chain of thought 프롬프팅은 다음과 같은 장점을 가진다.
 
@@ -41,7 +41,7 @@ Chain of thought 프롬프팅은 수학문제를 풀 때 풀이과정을 적는 
 
 위의 그림처럼 문제, chain of thought, 정답의 형식으로 중간 풀이 과정을 프롬프트에 포함해서 이와 같은 구조로 LLM에게 문제를 풀라고 지시하는 것이 chain of thought 프롬프팅이다. 이 방법은 다양한 분야의 문제 해결에 사용될 수 있다.
 
-## 3. Arithmetic Reasoning
+## Arithmetic Reasoning
 
 일반적인 프롬프팅과 chain of thought 프롬프팅을 비교하기 위해 다음과 같이 모델이 추론 과정에서 참고할 프롬프트를 입력했다.
 
@@ -66,11 +66,11 @@ Ablation study에서는 다른 방식의 프롬프팅을 사용할 때 chain of 
 
 Chain of thought은 특정 구조의 프롬프트에 의존적이지 않고 "논리적 흐름"이라는 형식을 갖추는 프롬프트에 대해 보편적으로 동작한다. 서로 다른 사람이 작성한 프롬프트여도, chain of thought의 핵심 아이디어만 포함한다면 baseline 모델보다 높은 성능을 보인다. 또한, 프롬프트에 들어가는 예시의 종류에 관계 없이도 성능 향상을 보인다.
 
-## 4. Commonsense Reasoning
+## Commonsense Reasoning
 
 앞서 계산 문제에 대해 chain of thought을 적용해 성능이 개선된 사례를 보았는데, 일반적인 상식과 관련한 추론에서도 chain of thought 프롬프팅은 성능 향상에 도움이 된다. 계산 문제에서의 결과와 유사하게, 파라미터 개수가 많은 모델에서 chain of thought 프롬프팅을 적용했을 때 CSQA, StrategyQA 등에서 벤치마크 점수가 향상되었다.
 
-## 5. Symbolic Reasoning
+## Symbolic Reasoning
 
 Chain of thought 프롬프팅은 기호 조작 분야에서도 좋은 성능을 나타낸다. 여기에서는 두 가지 벤치마크를 사용했다.
 
@@ -81,12 +81,12 @@ Chain of thought 프롬프팅은 기호 조작 분야에서도 좋은 성능을 
 
 In domain과 out of domain에서 모두 chain of thought 프롬프팅을 적용했을 때 파라미터 수가 작은 모델에서는 성능 향상이 미미하거나 없었지만 100B 이상의 모델에서는 큰 성능 향상이 있었다. 특히 예시와 다른 기호나 표현을 사용했을 때 chain of thought의 성능이 발현하려면 큰 모델이 필요했다.
 
-## 6. Discussion
+## Discussion
 
 Chain of thought 프롬프팅은 arithmetic reasoning, commonsense reasoning, symbolic reasoning에서 모두 파라미터 수가 많은 모델에 대해서 비약적인 성능 향상을 이루었고 이러한 성능 향상은 모두 파인튜닝 없이 이루어졌다. 기존의 프롬프팅 방법과 비교해서, chain of thought 프롬프팅은 모델 크기가 커질 수록 성능이 더 크게 상승하도록 하며 프롬프팅 만으로 모델이 가진 잠재력을 이끌어낼 수 있도록 한다.
 
 Chain of thought이 가지는 한계로는 우선, chain of thought이 출력 결과에 사람이 추론하는 것과 유사한 답변을 나오게는 하지만 이것이 실제로 신경망 내부에서 "추론"이라는 과정에 수행되는지는 알 수 없다. 또한 프롬프트에 들어갈 예시를 몇 개 만드는 것은 비용이 크게 들지 않지만 파인튜닝을 위한 exemplar 데이터셋을 만드는 것은 많은 비용이 들다. Chain of thought이 거대 모델에서만 효과를 보이는데 비용적 측면에서 소형 모델에서도 추론 능력을 강화할 수 있는 방법을 찾는 것이 중요한 과제로 남는다.
 
-## 7. 느낀점
+## 느낀점
 
 Chain of thought 프롬프팅은 파인튜닝 없이 프롬프팅만으로 모델의 추론 성능을 극대화할 수 있는 의의를 가진다. 하지만, 여전히 거대 모델의 성능을 극대화 하는 것이지 소형 모델에서는 효과가 미미하며 이는 필연적으로 모델의 추론 능력은 파라미터 수에 비례함을 보인다. Chain of thought을 기점으로 프롬프팅의 중요성이 대두된 것 같고 프롬프팅을 제대로 하지 않으면 모델의 성능을 충분히 활용하지 못할 것 같다. 출력 토큰 수가 아니라 실제 의미 있는 자연어 논리 과정이 모델 출력에 영향을 준다고 하는데 중간 출력에서 나오는 의미가 최종 정답에도 어떻게 영향을 주는지를 더 알아보고 싶다.
