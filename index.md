@@ -17,8 +17,6 @@ redirect_from:
 
 Hi, I'm **Jaewon Seo**. I study Industrial and Management Engineering and Mathematics at POSTECH.
 
-_(A short paragraph about what you work on and what you're curious about goes here.)_
-
 This site keeps my [posts](/posts/) (paper reviews and study notes), my [projects](/projects/),
 and the CV below. The fastest way to reach me is email.
 
