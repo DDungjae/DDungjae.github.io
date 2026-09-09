@@ -7,6 +7,7 @@ header:
   teaser: /assets/images/overview/statistical-inference-textbook.png
 ---
 
+## 과목 소개와 수강 목적
 이번 학기에는 MATH530 Mathematical Statistics(수리통계학)을 수강한다. 500번대인 학수번호에서 볼 수 있듯이 대학원 과목이다. 수학과 복수전공을 하면서 꼭 들어야겠다고 생각한 과목이 MATH530이고 대학원 과목임에도 불구하고 호기롭게 수강신청을 했다. 이전에 기초적인 Probabillity and Statistics, Analysis I, II를 수강하며 MATH530을 들을 배경은 모두 충족했다고 생각이 들었고, 머신러닝이나 딥러닝에서 사용되는 통계적 이론을 이해하기 위해 이 과목에서 많은 것을 얻어갈 수 있다고 생각이 든다.
 
 ![Statistical Inference, 2nd edition (Casella & Berger)](/assets/images/overview/statistical-inference-textbook.png)
