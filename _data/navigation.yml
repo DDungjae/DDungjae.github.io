@@ -17,5 +17,7 @@ lectures:
     children:
       - title: "MATH530 - Mathematical Statistics"
         url: /lectures/math530/
+        description: "2026 Fall · Casella & Berger, Statistical Inference (2nd ed.)"
       - title: "MATH442 - Mathematics for AI"
         url: /lectures/math442/
+        description: "2026 Fall"
