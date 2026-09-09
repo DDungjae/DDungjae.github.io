@@ -254,7 +254,9 @@ def transform_body(body: str, md_path: Path, asset_dir: Path, asset_url: str,
         return m.group(0) if new is None else f"[{text}]({new})"
 
     def fix_math_inline(line: str) -> str:
-        # $x$ → $$x$$  (이미 $$ 인 것, \$ 로 이스케이프한 것, 줄 넘어가는 것은 건드리지 않음)
+        # 노션 MCP(fetch) 는 인라인 수식을 $`x`$ 로 내보냄 → 백틱을 벗기고 $$x$$ 로
+        line = re.sub(r"\$`(.+?)`\$", r"$$\1$$", line)
+        # zip export 의 $x$ → $$x$$  (이미 $$ 인 것, \$ 로 이스케이프한 것, 줄 넘어가는 것은 건드리지 않음)
         return re.sub(r"(?<![\$\\])\$(?!\$)([^\$\n]+?)(?<![\$\\])\$(?!\$)", r"$$\1$$", line)
 
     out: list[str] = []
