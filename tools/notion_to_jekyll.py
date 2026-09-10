@@ -303,6 +303,8 @@ def transform_body(body: str, md_path: Path, asset_dir: Path, asset_url: str,
                 level = min(len(hm.group(1)) + 1, 6)
                 line = f"{'#' * level} {hm.group(2)}"
 
+        # 노션(KaTeX) 전용 매크로 → MathJax 가 아는 이름으로
+        line = re.sub(r"\\infin(?![A-Za-z])", r"\\infty", line)
         if "$$" not in line:
             line = fix_math_inline(line)
         line = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", fix_image, line)

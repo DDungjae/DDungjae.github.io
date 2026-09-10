@@ -2,7 +2,7 @@
 title: "Week 1: Overview"
 date: 2026-09-08
 course: "MATH530"
-excerpt: "My first graduate course lecture, MATH530 Mathematical Statistics"
+excerpt: "호기롭게 시작하는 대학원 과목 수리통계학(MATH530)"
 header:
   teaser: /assets/images/overview/statistical-inference-textbook.png
 ---
