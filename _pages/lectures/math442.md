@@ -11,7 +11,7 @@ course: MATH442
 
 2026 Fall
 
-{% assign notes = site.lectures | where: "course", page.course | sort: "date" %}
+{% assign notes = site.lectures | where: "course", page.course | sort: "date" | reverse %}
 {% if notes.size == 0 %}
 아직 올라온 노트가 없습니다.
 {% else %}
