@@ -4,6 +4,10 @@
 ---
 @charset "utf-8";
 
+// 페이지 전체 최대 폭. 테마 기본값은 1280px. 넓은 화면에서 왼쪽 목록·오른쪽 목차가 바깥으로 밀리고
+// 본문이 그만큼 넓어집니다. (사이드바 폭은 각각 300px 고정)
+$max-width: 1440px;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // 색 테마
 @import "minimal-mistakes"; // 테마 본체
 
