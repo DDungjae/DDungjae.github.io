@@ -44,6 +44,8 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
   과목 페이지 제목은 "MATH530 - Mathematical Statistics" 처럼 긴 이름이니 거기서 가져올 때는 대시 앞의 코드만 씁니다.
   현재 과목: MATH530 (Notes DB collection 4da3c0d6-e1dd-4360-b12d-c91300bcc0ce), MATH442.
   `Week` 속성은 front matter 에 넣지 않습니다 (제목에 이미 들어감).
+  노트의 `Excerpt` 속성 → `Excerpt: ...` 줄로 옮기면 목록의 한 줄 요약이 됩니다. 비어 있으면 본문 첫 문단이 쓰이며,
+  **제가 요약 문장을 지어 넣지 않습니다** (사용자가 노션 Excerpt 칸에 직접 씁니다).
 - 새 과목이 생기면: 노션에 과목 페이지 + Notes DB 를 같은 형태로 만들고, 사이트에는 `_pages/lectures/<과목>.md` 와 navigation.yml 항목을 추가합니다.
 
 ## 1. 입력 찾기 (zip 으로 받은 경우)
