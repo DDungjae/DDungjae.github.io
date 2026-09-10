@@ -1,5 +1,5 @@
 ---
-title: "Week 1: Overview"
+title: "Week 0: Overview"
 date: 2026-09-08
 course: "MATH530"
 excerpt: "호기롭게 시작하는 대학원 과목 수리통계학(MATH530)"
