@@ -35,7 +35,7 @@ $$
 - If $$\mathbf{A} \in \mathbb{R}^{n \times n}$$ satisfies $$\mathbf{A}^{\top}=\mathbf{A}$$, then $$\mathbf{A}$$ is symmetric
 - Theorem: Every real symmetric matrix $$\mathbf{S}$$ has a form $$\mathbf{S}=\mathbf{Q}\Lambda\mathbf{Q^\top}$$
 
-우리는 대칭행렬 $$\mathbf{A}$$를 위와 같이 대각행렬 $$\Lambda$$와 $$\mathbf{Q}$$로 표현할 수 있다. 이때 $$\mathbf{Q}^\top$$은 orthonormal matrix이다. Orthonormal matrix는 다음과 같이 성질을 가진다고 배웠었다.
+우리는 대칭행렬 $$\mathbf{S}$$를 위와 같이 대각행렬 $$\Lambda$$와 $$\mathbf{Q}$$로 표현할 수 있다. 이때 $$\mathbf{Q}^\top$$은 orthonormal matrix이다. Orthonormal matrix는 다음과 같이 성질을 가진다고 배웠었다.
 
 $$
 q_i^\top q_j=
