@@ -13,3 +13,24 @@
   };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- SEO/AEO: 구조화 데이터(JSON-LD). 검색엔진과 AI 검색(Google AI Overview, Perplexity 등)이
+     저자·발행일·주제를 더 정확히 뽑아가도록 돕습니다. 글/노트/프로젝트에는 Article 스키마를 넣습니다.
+     홈(About)은 테마가 이미 기본 Person 구조화 데이터를 내보내므로(_includes/seo.html, "end
+     _includes/seo.html" 주석 참고) 여기서 또 넣어 중복시키지 않습니다. -->
+{% if page.collection == "posts" or page.collection == "lectures" or page.collection == "projects" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.excerpt | strip_html | strip_newlines | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "author": { "@type": "Person", "name": {{ site.author.name | jsonify }}, "url": {{ "/" | absolute_url | jsonify }} },
+  "publisher": { "@type": "Person", "name": {{ site.author.name | jsonify }} },
+  {% if page.header.teaser %}"image": {{ page.header.teaser | absolute_url | jsonify }},{% endif %}
+  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ page.url | absolute_url | jsonify }} },
+  "url": {{ page.url | absolute_url | jsonify }}
+}
+</script>
+{% endif %}

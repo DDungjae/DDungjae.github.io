@@ -1,0 +1,28 @@
+---
+layout: none
+permalink: /llms.txt
+---
+# {{ site.author.name }}
+
+> {{ site.description | strip_newlines | strip }}
+
+이 사이트는 {{ site.author.name }}의 개인 사이트입니다: 소개(About/CV), 논문 리뷰(Paper Review),
+수업 노트(Lectures), 프로젝트(Projects)를 담고 있습니다. 아래는 이 사이트의 주요 페이지 목록입니다.
+
+## About
+- [About / CV]({{ "/" | absolute_url }}): {{ site.author.bio }}, {{ site.author.location }}
+
+## Paper Reviews
+{% assign posts = site.posts | sort: "date" | reverse -%}
+{% for p in posts -%}
+- [{{ p.title }}]({{ p.url | absolute_url }}){% if p.excerpt %}: {{ p.excerpt | strip_html | strip_newlines | strip }}{% endif %}
+{% endfor %}
+## Lecture Notes
+{% assign lectures = site.lectures | sort: "date" | reverse -%}
+{% for l in lectures -%}
+- [{{ l.title }}]({{ l.url | absolute_url }}) ({{ l.course }})
+{% endfor %}
+## Projects
+{% for pr in site.projects -%}
+- [{{ pr.title }}]({{ pr.url | absolute_url }}){% if pr.excerpt %}: {{ pr.excerpt | strip_html | strip_newlines | strip }}{% endif %}
+{% endfor %}
