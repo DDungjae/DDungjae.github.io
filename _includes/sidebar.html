@@ -1,6 +1,8 @@
 {% comment %}
-  테마의 _includes/sidebar.html 을 덮어쓴 파일입니다. 원본과 같지만, 강의 노트(_lectures) 본문 페이지에서는
-  과목 목차 대신 "그 과목의 노트 목록" 을 왼쪽에 보여줍니다. (제목: 과목 페이지 링크, 항목: 노트, 최신순, 현재 글 강조)
+  테마의 _includes/sidebar.html 을 덮어쓴 파일입니다. 원본과 같지만,
+  - 강의 노트(_lectures) 본문 페이지에서는 과목 목차 대신 "그 과목의 노트 목록" 을,
+  - 논문 리뷰(_posts) 본문 페이지에서는 "전체 글 목록" 을
+  왼쪽에 보여줍니다. (항목: 최신순, 현재 글 강조)
 {% endcomment %}
 {% assign locale = include.locale | default: site.locale %}
 {% if page.author_profile or layout.author_profile or page.sidebar %}
@@ -36,6 +38,22 @@
               <ul>
                 {% for note in course_notes %}
                   <li><a href="{{ note.url | relative_url }}"{% if note.url == page.url %} class="active"{% endif %}>{{ note.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      {% elsif page.collection == "posts" %}
+        {% assign all_posts = site.posts | sort: "date" | reverse %}
+        <nav class="nav__list">
+          <input id="ac-toc" name="accordion-toc" type="checkbox" />
+          <label for="ac-toc">{{ site.data.ui-text[locale].menu_label | default: "Toggle Menu" }}</label>
+          <ul class="nav__items">
+            <li>
+              <a href="{{ '/posts/' | relative_url }}"><span class="nav__sub-title">Paper Review</span></a>
+              <ul>
+                {% for post in all_posts %}
+                  <li><a href="{{ post.url | relative_url }}"{% if post.url == page.url %} class="active"{% endif %}>{{ post.title }}</a></li>
                 {% endfor %}
               </ul>
             </li>

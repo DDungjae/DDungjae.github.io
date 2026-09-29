@@ -99,7 +99,8 @@ defaults:
     values:
       layout: single
       author_profile: false # 글 본문에서는 왼쪽 프로필 사이드바를 숨김
-      classes: [no-sidebar] # 비는 왼쪽 자리를 본문이 씀 (assets/css/main.scss)
+      sidebar:
+        nav: "posts" # 왼쪽에 전체 글 목록 (최신순, _includes/sidebar.html 이 처리)
       read_time: true
       comments: false
       share: true
