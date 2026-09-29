@@ -11,7 +11,7 @@ excerpt: "확률변수, 밀도함수, 질량함수 등 확률에 대한 다양�
 
 조건부 확률과 독립은 많이 들어보아서 익숙하다. 여기서 조건부 확률을 다시 한번 강조하는 이유는 베이즈 정리 때문이라고 생각한다.
 
-- If $$A$$ and $$B$$ are events in $$S$$, and $$0 < P(B)$$, then the conditional probability of $$A$$ given $$B$$, denoted by $$P(A|B)$$, is $$P(A|B)=\frac{P(A\cap B)}{P(B)}$$
+- If $$A$$ and $$B$$ are events in $$S$$, and $$0 < P(B)$$, then the conditional probability of $$A$$ given $$B$$, denoted by $$P(A\vert{}B)$$, is $$P(A\vert{}B)=\frac{P(A\cap B)}{P(B)}$$
 - Two events $$A$$ and $$B$$ are statistically independent if $$P(A\cap B)=P(A)P(B)$$
 
 조건부 확률을 사용하는 이유로는 새로운 정보가 추가됨에 따라서 sample space를 다시 설정해야 할 수 있기 때문이다. 기존에 우리가 확률을 sample space $$S$$에서 생각했다면 conditional probability는 sample space를 $$B$$로 축소하는 것으로 볼 수 있다. 당연하게도 새로운 sample space $$B$$와 $$A$$가 disjoint 하다면 $$B$$라는 sample space에서는 $$A$$가 발생할 수 없으므로 conditional probability는 0이 된다. Conditional probability의 식을 변형하면 다음과 같은 형태가 유용하게 쓰이는 경우들도 종종 있다.
@@ -25,7 +25,7 @@ $$
 P(A_i|B)=\frac{P(B|A_i)P(A_i)}{\sum^\infty_{j=1}P(B|A_j)P(A_j)}
 $$
 
-사실, $$B$$라는 사건이 $$A$$라는 사건에 영향을 주지 않아 $$P(A|B)=P(A)$$일수 있다. 이러한 관계를 Bayes Rule에 적용한다고 했을 때 다음과 같이 변형된다.
+사실, $$B$$라는 사건이 $$A$$라는 사건에 영향을 주지 않아 $$P(A\vert{}B)=P(A)$$일수 있다. 이러한 관계를 Bayes Rule에 적용한다고 했을 때 다음과 같이 변형된다.
 
 $$
 P(A|B)=P(A)=P(B|A)\frac{P(A)}{P(B)}=\frac{P(A\cap B)}{P(B)}

@@ -253,11 +253,22 @@ def transform_body(body: str, md_path: Path, asset_dir: Path, asset_url: str,
         new = relocate(target)
         return m.group(0) if new is None else f"[{text}]({new})"
 
+    def escape_pipes(m: re.Match) -> str:
+        # 수식 안의 맨 "|" 는 kramdown(GFM) 이 표(table) 구분자로 착각해 문단을 표로
+        # 깨뜨린다 (예: 조건부확률 P(y|x)). $$...$$ 로 감싸기 전에 문자 그대로의 "|" 를
+        # 지운다. \| 는 MathJax 에서 \Vert(겹선, ‖) 이 되어버리므로 대신 \vert{} 를 쓴다
+        # (홑선을 뜻하는 TeX 명령이며, {} 는 바로 뒤 글자와 명령 이름이 합쳐지는 것을 막는다).
+        inner = m.group(1).replace("\\|", "|").replace("|", r"\vert{}")
+        return f"$${inner}$$"
+
     def fix_math_inline(line: str) -> str:
-        # 노션 MCP(fetch) 는 인라인 수식을 $`x`$ 로 내보냄 → 백틱을 벗기고 $$x$$ 로
-        line = re.sub(r"\$`(.+?)`\$", r"$$\1$$", line)
+        # 노션 MCP(fetch) 는 인라인 수식을 $`x`$ 로 내보냄 → 백틱을 벗기고 $$x$$ 로.
+        # $$...$$ 는 문장 중간에 있어도 kramdown 이 인라인 수식(\( \))으로 바꿔주고
+        # \{ \} 같은 이스케이프도 그대로 보존한다 (단일 $...$ 는 이 보호를 받지 못해
+        # kramdown 이 일반 텍스트로 취급하면서 백슬래시를 지워버린다).
+        line = re.sub(r"\$`(.+?)`\$", escape_pipes, line)
         # zip export 의 $x$ → $$x$$  (이미 $$ 인 것, \$ 로 이스케이프한 것, 줄 넘어가는 것은 건드리지 않음)
-        return re.sub(r"(?<![\$\\])\$(?!\$)([^\$\n]+?)(?<![\$\\])\$(?!\$)", r"$$\1$$", line)
+        return re.sub(r"(?<![\$\\])\$(?!\$)([^\$\n]+?)(?<![\$\\])\$(?!\$)", escape_pipes, line)
 
     out: list[str] = []
     in_code = False
