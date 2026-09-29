@@ -1,11 +1,15 @@
 ---
+title: "2026-09-21-lora-low-rank-adaptation-of-large-language-models"
+date: 2026-09-29
+excerpt: "--- title: \"LoRA: LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS\" date: 2026-09-21 excerpt: \"Edward Hu et al., ICLR 2022\" categories: [\"paper-review\"] tags: [\"op…"
+---
+
+---
 title: "LoRA: LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS"
 date: 2026-09-21
 excerpt: "Edward Hu et al., ICLR 2022"
 categories: ["paper-review"]
 tags: ["optimization", "fine-tuning"]
-header:
-  teaser: /assets/images/lora-low-rank-adaptation-of-large-language-models/image.png
 ---
 
 [https://arxiv.org/pdf/2106.09685](https://arxiv.org/pdf/2106.09685)
@@ -14,7 +18,7 @@ header:
 
 많은 NLP 연구에서 LLM의 세부 분야 적용을 위해 파인튜닝을 하는 접근을 시도했다. 하지만 파인튜닝된 모델은 원본 모델과 같은 수의 파라미터를 가지게 되고 이는 점점 더 파라미터 수가 커지는 모델에 대해서 비효율적이게 된다. 그래서 이를 해결하기 위해 특정 task를 위한 사전 학습 파라미터만 불러오는 등의 방법을 사용했지만 이는 추론 시간 증가, 입력 토큰 수 감소 등의 문제가 있었고 근본적으로 파인튜닝보다 성능이 떨어진다.
 
-![Introduction figure](/assets/images/lora-low-rank-adaptation-of-large-language-models/image.png)
+![LoRA 개요 비교](https://prod-files-secure.s3.us-west-2.amazonaws.com/5516ffea-516b-4d90-82c8-57a89ab0a776/17545057-666c-4edf-832e-010fbfab7de6/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466S6W2AHO4%2F20260929%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260929T031806Z&X-Amz-Expires=300&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHoaCXVzLXdlc3QtMiJHMEUCIQCVdT33Xlpxnry4ivAROaRiNpUzEmXXD7sHJzIuTVqrZwIgZiT6mjgDii7pSAfW9R%2FI8KkmoStvLgW%2BRC2KxcTxB8gq%2FwMIQxAAGgw2Mzc0MjMxODM4MDUiDPrWfuizRfjCxKw3WSrcAxhIK7oyFqZpv4RElTDcmncYzvIGL9x2TxH5ywG7r5c9T2zvFKbJ1MWxWdRjFfZv%2BmSpJopAxfKwh9ZpBJoq5hzrr1Hy5f0%2BgIx1yX4lkhAdaqxUC%2BVX6aC3zcFBytdu2rtNqmwJasrRfY96tcTiNUfiytLljQddKVAQ3sBtcF%2FQycRa%2FpEtuD5nMeorlnBeRKYnmUFot1VxzFH2F1aor6EJTy4ES6ivhNrbvnBE0ReUjKeT0QxOyBAH7jC0LZnIKcC4qosh6jOdv70w8eCyTuPj1G0gw6dxOTkBSSuYteYpuGvrLxd0RPPN3fJqRuGHThzdckqZNFtcgBENpVbdg3qTcQEoQ0UfjaWtSGal2wwZLpNk%2BrVAKVT2QSyCq9BoygjLqUzZhZrmuaCjwruKuzrfmovHwkDcgqyYSQCt16uae6MtxRm4Oe4F%2FCWTrRrU2hIlqk9wjFIKL7X8WRaLxRSeuI%2BQGSC3ZRI3aXRng9qE7bukZ0NTF65rIaeHyylwRezHV5n%2By3k%2FkIUcVNtN%2FV6ZmCAkhgMCr1t%2FIvXq0tRR7Qp%2Bjc9AZyFtTrw62FswfQjBTRvib7p72EM3IZ9eedCuV%2B4T6D%2F19BXl6gYyHCEk2h%2FSqkcQd%2BUdwt0cMIO97NUGOqUBCzPuyuamH3mAISEvbRHmG6Pf6DMAjg09iv%2FfCnaRMEo2RVJ5%2FJV10qM1wDCUdSGB%2Fe939yeXAREq7GS5eLaJ0K2YELlMZD9%2BPxDMurBPODQ9cRW4EIAa8givssdh%2FvkYvowY%2BsiFwEuiPojcJQTqAHliQEGMLdvlcxEBbP7ZpcAeB3qyweDEOWiP%2FKO1ZhD0GxZlnJW92wKxH%2FH4LkaBgBEvHXxI&X-Amz-Signature=3d858011cfc6c00559a9c3c475000a218c94f9958c0574104496ec751ad05f03&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 본 논문에서는 Low-Rank Adaptation (LoRA)를 제안한다. LoRA는 기존의 사전학습 가중치 행렬에서 특정 task에 영향을 미치는 원소는 극히 일부일 것이라는 직관(low intrinsic rank)하에서 전체 가중치 행렬을 학습하는 것이 아닌 낮은 rank 행렬을 학습해 학습해야 하는 파라미터의 수를 획기적으로 줄인다.
 
@@ -22,21 +26,30 @@ header:
 
 사전학습된 모델 $$P_\Phi(y|x)$$가 있다고 해보자. 이때 우리는 이 모델의 특정 task에 대한 성능을 개선하고 싶고 이를 위한 학습 데이터가 $$\mathbf{Z}=\{(x_i, y_i)\}_{i=1, \dots, N}$$과 같이 주어진다. 예를 들어 한국어 영어 번역을 학습하고 싶다고 하면 $$x_i$$는 한국어 문장, $$y_i$$는 영어 문장이 된다. 쉽게 말하면 문제, 정답 쌍이 주어진다는 것이다. 기존의 full-tuning에서는 다음과 같이 가중치 $$\Phi$$를 업데이트 한다.
 
-$$\max_{\Phi}\sum_{(x, y)\in\mathbf{Z}}\sum^{|y|}_{t=1}\log(P_\Phi(y_t|x, y_{<t}))$$
+$$
+\max_{\Phi}\sum_{(x, y)\in\mathbf{Z}}\sum^{|y|}_{t=1}\log(P_\Phi(y_t|x, y_{<t}))
+$$
 
 위 수식을 풀어보자면 모든 학습 데이터 쌍에 대해서 언어 모델이 자기회귀적(autoregressive)으로 토큰을 생성한다고 할 때 각 입력 토큰에 따른 각 단어별 예측 확률이 된다.
 
-$$x=\text{사과는 맛있다}, y=\text{Apple is delicious}\\\sum^{|y|}_{t=1}\log(P_\Phi(y_t|x, y_{<t}))=\log(P_\Phi(\text{Apple}|\text{사과는 맛있다}))+\log(P_\Phi(\text{is}|\text{사과는 맛있다, Apple}))+\log(P_\Phi(\text{delicious}|\text{사과는 맛있다, Apple is}))$$
+$$
+x=\text{사과는 맛있다}, y=\text{Apple is delicious}\\
+\sum^{|y|}_{t=1}\log(P_\Phi(y_t|x, y_{<t}))=\log(P_\Phi(\text{Apple}|\text{사과는 맛있다}))+\log(P_\Phi(\text{is}|\text{사과는 맛있다, Apple}))+\log(P_\Phi(\text{delicious}|\text{사과는 맛있다, Apple is}))
+$$
 
 이렇게 이전 토큰까지가 입력으로 주어졌을 때 다음 토큰이 나올 확률의 합을 최대화 하는 것이 목표이고 이를 모든 데이터 쌍에 대해 수행한다. 이때 현재 파인튜닝 방식의 문제점은 $$\Phi$$와 동일한 크기의 파라미터를 매번 태스크에 대해 파인튜닝할 때 학습해야 한다는 것이며 최근의 모델들은 billion 단위의 파라미터 수를 가지기 때문에 이는 매우 비효율적이다.
 
-$$\max_{\Theta}\sum_{(x, y)\in\mathbf{Z}}\sum^{|y|}_{t=1}\log(P_{\Phi_0+\Delta\Phi(\Theta)}(y_t|x, y_{<t}))$$
+$$
+\max_{\Theta}\sum_{(x, y)\in\mathbf{Z}}\sum^{|y|}_{t=1}\log(P_{\Phi_0+\Delta\Phi(\Theta)}(y_t|x, y_{<t}))
+$$
 
 본 논문에서는 $$\Phi$$ 대신 $$\Theta$$라는 원본 모델의 파라미터 수보다 훨씬 적은 수의 가중치를 학습해 연산량과 메모리 효율성을 높이는 방법을 제안한다.
 
 ## OUR METHOD
 
-$$W_0+\Delta W=W_0+BA$$
+$$
+W_0+\Delta W=W_0+BA
+$$
 
 ### LOW-RANK-PARAMETERIZED UPDATE MATRICES
 
@@ -56,12 +69,12 @@ LoRA를 트랜스포머에 적용할 때 어텐션 레이어의 가중치 $$(W_q
 
 ### WHICH WEIGHT MATRICES IN TRANSFORMERS SHOULD WE APPLY LoRA TO
 
-![Table 5](/assets/images/lora-low-rank-adaptation-of-large-language-models/image-2.png)
+![레이어별 rank 비교](https://prod-files-secure.s3.us-west-2.amazonaws.com/5516ffea-516b-4d90-82c8-57a89ab0a776/80f8b7cf-00f1-4460-9d40-346eb5deaddc/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466S6W2AHO4%2F20260929%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260929T031806Z&X-Amz-Expires=300&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHoaCXVzLXdlc3QtMiJHMEUCIQCVdT33Xlpxnry4ivAROaRiNpUzEmXXD7sHJzIuTVqrZwIgZiT6mjgDii7pSAfW9R%2FI8KkmoStvLgW%2BRC2KxcTxB8gq%2FwMIQxAAGgw2Mzc0MjMxODM4MDUiDPrWfuizRfjCxKw3WSrcAxhIK7oyFqZpv4RElTDcmncYzvIGL9x2TxH5ywG7r5c9T2zvFKbJ1MWxWdRjFfZv%2BmSpJopAxfKwh9ZpBJoq5hzrr1Hy5f0%2BgIx1yX4lkhAdaqxUC%2BVX6aC3zcFBytdu2rtNqmwJasrRfY96tcTiNUfiytLljQddKVAQ3sBtcF%2FQycRa%2FpEtuD5nMeorlnBeRKYnmUFot1VxzFH2F1aor6EJTy4ES6ivhNrbvnBE0ReUjKeT0QxOyBAH7jC0LZnIKcC4qosh6jOdv70w8eCyTuPj1G0gw6dxOTkBSSuYteYpuGvrLxd0RPPN3fJqRuGHThzdckqZNFtcgBENpVbdg3qTcQEoQ0UfjaWtSGal2wwZLpNk%2BrVAKVT2QSyCq9BoygjLqUzZhZrmuaCjwruKuzrfmovHwkDcgqyYSQCt16uae6MtxRm4Oe4F%2FCWTrRrU2hIlqk9wjFIKL7X8WRaLxRSeuI%2BQGSC3ZRI3aXRng9qE7bukZ0NTF65rIaeHyylwRezHV5n%2By3k%2FkIUcVNtN%2FV6ZmCAkhgMCr1t%2FIvXq0tRR7Qp%2Bjc9AZyFtTrw62FswfQjBTRvib7p72EM3IZ9eedCuV%2B4T6D%2F19BXl6gYyHCEk2h%2FSqkcQd%2BUdwt0cMIO97NUGOqUBCzPuyuamH3mAISEvbRHmG6Pf6DMAjg09iv%2FfCnaRMEo2RVJ5%2FJV10qM1wDCUdSGB%2Fe939yeXAREq7GS5eLaJ0K2YELlMZD9%2BPxDMurBPODQ9cRW4EIAa8givssdh%2FvkYvowY%2BsiFwEuiPojcJQTqAHliQEGMLdvlcxEBbP7ZpcAeB3qyweDEOWiP%2FKO1ZhD0GxZlnJW92wKxH%2FH4LkaBgBEvHXxI&X-Amz-Signature=5781bdb4b15d61e261d8f5cb46e85967ba2d739f84494fea53a506424302e474&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 Table 5를 보면 학습되는 가중치 수를 고정한 상태에서 rank와 레이어 수 조합을 변경해가며 실험했을 때 하나의 가중치를 큰 $$r$$로 학습하는 것보다 여러 가중치를 낮은 $$r$$로 학습하는 것이 더 좋은 성능을 보였다. 따라서 큰 rank로 가중치 하나를 학습하는 것보다 낮은 rank로 여러 레이어의 가중치를 학습하는 것이 효과적이다.
 
 ### WHAT IS THE OPTIMAL RANK $$r$$ FOR LoRA
 
-![Optimal rank analysis](/assets/images/lora-low-rank-adaptation-of-large-language-models/image-3.png)
+![최적 rank 분석](https://prod-files-secure.s3.us-west-2.amazonaws.com/5516ffea-516b-4d90-82c8-57a89ab0a776/867ce362-547c-4bee-8e37-92a9d45645df/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466S6W2AHO4%2F20260929%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260929T031806Z&X-Amz-Expires=300&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHoaCXVzLXdlc3QtMiJHMEUCIQCVdT33Xlpxnry4ivAROaRiNpUzEmXXD7sHJzIuTVqrZwIgZiT6mjgDii7pSAfW9R%2FI8KkmoStvLgW%2BRC2KxcTxB8gq%2FwMIQxAAGgw2Mzc0MjMxODM4MDUiDPrWfuizRfjCxKw3WSrcAxhIK7oyFqZpv4RElTDcmncYzvIGL9x2TxH5ywG7r5c9T2zvFKbJ1MWxWdRjFfZv%2BmSpJopAxfKwh9ZpBJoq5hzrr1Hy5f0%2BgIx1yX4lkhAdaqxUC%2BVX6aC3zcFBytdu2rtNqmwJasrRfY96tcTiNUfiytLljQddKVAQ3sBtcF%2FQycRa%2FpEtuD5nMeorlnBeRKYnmUFot1VxzFH2F1aor6EJTy4ES6ivhNrbvnBE0ReUjKeT0QxOyBAH7jC0LZnIKcC4qosh6jOdv70w8eCyTuPj1G0gw6dxOTkBSSuYteYpuGvrLxd0RPPN3fJqRuGHThzdckqZNFtcgBENpVbdg3qTcQEoQ0UfjaWtSGal2wwZLpNk%2BrVAKVT2QSyCq9BoygjLqUzZhZrmuaCjwruKuzrfmovHwkDcgqyYSQCt16uae6MtxRm4Oe4F%2FCWTrRrU2hIlqk9wjFIKL7X8WRaLxRSeuI%2BQGSC3ZRI3aXRng9qE7bukZ0NTF65rIaeHyylwRezHV5n%2By3k%2FkIUcVNtN%2FV6ZmCAkhgMCr1t%2FIvXq0tRR7Qp%2Bjc9AZyFtTrw62FswfQjBTRvib7p72EM3IZ9eedCuV%2B4T6D%2F19BXl6gYyHCEk2h%2FSqkcQd%2BUdwt0cMIO97NUGOqUBCzPuyuamH3mAISEvbRHmG6Pf6DMAjg09iv%2FfCnaRMEo2RVJ5%2FJV10qM1wDCUdSGB%2Fe939yeXAREq7GS5eLaJ0K2YELlMZD9%2BPxDMurBPODQ9cRW4EIAa8givssdh%2FvkYvowY%2BsiFwEuiPojcJQTqAHliQEGMLdvlcxEBbP7ZpcAeB3qyweDEOWiP%2FKO1ZhD0GxZlnJW92wKxH%2FH4LkaBgBEvHXxI&X-Amz-Signature=1602349c856bf6c743a60cff236d064598216e8ffd3e835d315e8449fee10431&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 rank를 변경하며 실험했을 때 작은 r에서도 충분한 학습 성능을 보였다. 이는 $$\Delta W$$가 아주 작은 intrinsic rank를 가지고 있음을 보이며 유의미한 subspace를 구성하기 위해서 큰 rank가 필요하지 않음을 보인다.
