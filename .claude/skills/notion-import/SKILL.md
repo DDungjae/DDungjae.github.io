@@ -7,6 +7,14 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
 
 변환 자체는 `tools/notion_to_jekyll.py` 가 합니다. 이 스킬은 그 스크립트를 어떤 순서로 쓰고
 무엇을 확인해야 하는지 정리한 것입니다. 사이트는 Jekyll + Minimal Mistakes (remote theme) 입니다.
+수식 렌더링의 비직관적인 함정(인라인 수식은 왜 항상 `$$`를 써야 하는지, `|` 문자가 왜 위험한지)은
+레포 루트의 `CLAUDE.md` 에 있으니 먼저 읽어 두세요 — 몰랐다가 실제로 글을 깨뜨린 적이 있습니다.
+
+**주의**: 이미 변환되어 `_posts/`/`_lectures/`/`_projects/` 에 있는 파일을 다시 이 스크립트의
+입력으로 넣지 마세요. 그 파일은 이미 front matter + 본문 형태라서, 스크립트가 그걸 "노션 제목/
+속성 줄"로 잘못 읽어 제목이 파일명 그대로 들어가고 본문이 `---` 로 시작하는 완전히 깨진 글을
+만듭니다. 새로 변환할 때는 항상 노션 fetch 결과로 임시 파일을 새로 만들고, 기존 글을 고칠 때는
+스크립트를 다시 돌리지 말고 그 `.md` 파일을 직접 Edit 하세요.
 
 ## 0. 노션 MCP 가 연결되어 있으면 (zip 없이 바로)
 
@@ -28,7 +36,7 @@ description: 노션(Notion)에서 내보낸 마크다운(zip 또는 .md)을 이 
    python tools/notion_to_jekyll.py "<임시 .md>" --type post --download-images --slug <slug> [--excerpt "..."]
    ```
    만료 경고가 나오면 fetch 를 다시 해서 새 URL 로 반복합니다.
-5. 이후는 아래 5번(빌드 확인)부터 동일합니다.
+5. 이후는 아래 5번(내용 검토)부터 동일합니다.
 
 **한 줄 요약(excerpt) 규칙**: 논문 리뷰는 서지 정보 한 줄로 통일합니다. 형식은 `Jason Wei et al., NeurIPS 2022`
 (제1저자 et al., 저자 2~3명이면 전부; 학회는 약칭, 저널은 정식 이름, arXiv 만 있으면 `arXiv 2022`).
@@ -94,7 +102,21 @@ python tools/notion_to_jekyll.py "<경로>" --type post [--slug ...] [--categori
 이미지는 `assets/images/<slug>/` 로 복사되고, 첫 이미지가 `header.teaser` 로 들어갑니다.
 같은 파일이 이미 있으면 멈춥니다. 같은 글을 다시 올리는 것이 맞으면 `--force`.
 
-## 5. 빌드 확인
+## 5. 내용 검토 (변환 전후 필수, 사용자가 요청 안 해도 항상)
+
+- **오타**: 본문과 (특히) 노션 속성(`Authors`, `Venue` 등 — 예: "NeurlPS" 같은 오타)도 봅니다.
+- **수식 가독성**: 인라인은 `$$`, 여러 줄 유도는 `\begin{aligned}`, `\lvert...\rvert`/
+  `\lVert...\rVert` 짝이 맞는지, 그리고 무엇보다 **수식 안에 맨 `|` 문자가 없는지** — 있으면
+  `\vert{}` 로 바꿉니다 (`CLAUDE.md` 참고, 스크립트가 노션발 인라인 수식은 자동으로 처리하지만
+  이미 있는 글을 손으로 고칠 때는 직접 바꿔야 합니다).
+  `\isin`→`\in`, `\infin`→`\infty` 는 스크립트가 자동 변환합니다.
+- **내용 정확성**: 논문 리뷰면 실제 논문과 대조해 수식 괄호 균형, 부등식 방향, 용어(예:
+  "Eckart-Young", "intrinsic" 같은 스펠링), 숫자가 맞는지 확인합니다.
+- 고친 것은 **사이트 파일과 노션 원본 양쪽 다** 반영합니다 (노션은 `mcp__notion__notion-update-page`
+  의 `update_content`). 단, `\vert{}` 같은 사이트 렌더링 전용 이스케이프는 노션 원본에는 넣지
+  않습니다 (노션은 읽기 좋은 `|` 그대로 둡니다).
+
+## 6. 빌드 확인
 
 ```bash
 export PATH="/c/Ruby40-x64/bin:$PATH" SSL_CERT_FILE="/c/Program Files/Git/mingw64/etc/ssl/certs/ca-bundle.crt"
@@ -102,11 +124,16 @@ bundle exec jekyll build 2>&1 | grep -iE "error|warning|done in"
 ```
 
 - 처음이면 `bundle install` 이 먼저 필요합니다 (`preview.bat` 이 같은 일을 합니다).
-- 오류 없이 `done in` 이 나오면 `_site/posts/<slug>/index.html` 이 생겼는지 확인합니다.
+- 오류 없이 `done in` 이 나오면 `_site/posts/<slug>/index.html` (또는 강의 노트/프로젝트 경로)이
+  생겼는지 확인합니다. `permalink` 설정상 파일명의 날짜가 주소에서 빠지니 못 찾으면
+  `find _site -iname "*<slug 일부>*"` 로 찾습니다.
 - 수식(`$$ ... $$`)은 MathJax 가 브라우저에서 그리므로 빌드 로그로는 알 수 없습니다.
-  `\(`, `\[` 가 HTML 에 들어갔는지만 봅니다: `grep -c '\\\\(' _site/posts/<slug>/index.html`
+  `\(`, `\[` 가 HTML 에 들어갔는지만 봅니다: `grep -c '\\\\(' <index.html>`
+- **`<table` 이 뜬금없이 생기지 않았는지 꼭 확인합니다**: `grep -q "<table" <index.html>` 가
+  걸리면 그 문단에 이스케이프 안 된 `|` 가 있다는 뜻입니다 (kramdown 의 GFM 표 자동 인식 때문 —
+  CLAUDE.md 참고). `$` 개수만 세는 걸로는 이 버그를 못 잡으니 빌드된 HTML 을 실제로 봐야 합니다.
 
-## 6. 결과 알리기 · 푸시
+## 7. 결과 알리기 · 푸시
 
 - 만든 파일 경로, 사이트 주소(`https://ddungjae.github.io/posts/<slug>/`), 복사한 이미지 수,
   경고가 있었으면 그 내용을 사용자에게 알립니다.
