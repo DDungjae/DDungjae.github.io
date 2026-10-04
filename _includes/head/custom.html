@@ -5,7 +5,12 @@
       inlineMath: [["\\(", "\\)"], ["$", "$"]],
       displayMath: [["\\[", "\\]"], ["$$", "$$"]],
       processEscapes: true,
-      tags: "ams"
+      tags: "ams",
+      // 노션 원본이 집합을 \set{...} 로 쓰는데, 이는 표준 LaTeX/MathJax 명령이 아니라서
+      // 그대로 두면 "Undefined control sequence" 로 깨집니다. \{...\} 로 풀어주는 매크로.
+      macros: {
+        set: ["\\{#1\\}", 1]
+      }
     },
     options: {
       skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]

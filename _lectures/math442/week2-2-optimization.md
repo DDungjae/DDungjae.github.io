@@ -2,7 +2,7 @@
 title: "Week2-2: Optimization"
 date: 2026-09-17
 course: "MATH442"
-excerpt: "이번 시간부터는 neural network와 손실함수 최적화로 들어간다. 본격적으로 머신러닝에 관한 내용이 나와 기대가 된다. 이전까지 행렬 연산만 계속 하던게 살짝 머리아팠는데 이제 내가 MATH442를 듣고 싶었던 이유와 직접적으로 관련되는 내용이 수업에 등장한다."
+excerpt: "인공신경망이 함수를 근사하는 원리와 손실함수를 최적화 하는 방법"
 tags: ["optimization", "machine-learning"]
 ---
 
