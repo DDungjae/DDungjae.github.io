@@ -33,7 +33,7 @@ $$
 \begin{aligned}
 \text{E}[(\frac{1}{k}\nabla_BL)^2]&=\frac{1}{k^2}\text{E}[\sum_{i=1}^N\mathbb{1}_{\set{i\in B}}\lVert\nabla L_i\rVert^2]+\frac{1}{k^2}\text{E}[\sum_j\sum_i\mathbb{1}_{\set{\set{i, j}\in B}}\nabla L_i^\top\nabla L_j]\\
 &=\frac{1}{k^2}\frac{k}{N}\sum_{i=1}^N\lVert\nabla L_i\rVert^2+\frac{1}{k^2}\sum_j\sum_i\frac{\binom{N-2}{k-2}}{\binom{N}{k}}\nabla L_i^\top\nabla L_j\\
-\rightarrow \text{Var}[\frac{1}{k}\nabla L_B]&=\frac{k(N-k)}{k^2N^2(N-1)}(N\sum_{i=1}^N\lVert\nabla L_i\rVert^2-\lVert\sum_{i=1}^N\nabla L_i\rVert^2)
+\Rightarrow \text{Var}[\frac{1}{k}\nabla L_B]&=\frac{k(N-k)}{k^2N^2(N-1)}(N\sum_{i=1}^N\lVert\nabla L_i\rVert^2-\lVert\sum_{i=1}^N\nabla L_i\rVert^2)
 \end{aligned}
 $$
 
