@@ -3,6 +3,7 @@
 title: "Paper Review"
 permalink: /posts/
 layout: posts
+entries_layout: grid # projects 와 동일하게 카드(이미지+제목)로 표시
 author_profile: false
 classes: [no-sidebar] # 왼쪽 사이드바 자리를 본문이 씀
 ---
