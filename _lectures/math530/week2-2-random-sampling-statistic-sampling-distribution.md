@@ -2,7 +2,7 @@
 title: "Week2-2: Random Sampling, Statistic, Sampling Distribution"
 date: 2026-09-17
 course: "MATH530"
-excerpt: "대한민국 국민 전체의 키의 평균이나, 표준편차 등을 알고 싶다고 해보자. 현실적으로 5000만명이 넘는 모든 국민에 대해서 키를 측정하는 것은 불가능하다. 우리는 이렇게 population에 대한 정보(통계량)을 알고 싶지만, population 전체에 대한 값을 아는 것이 불가능할…"
+excerpt: "샘플링- 부분에서 전체에 대한 정보를 얻어내는 방법"
 ---
 
 ## Random Sample
