@@ -30,8 +30,11 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
 
 - **Artificial Intelligence Engineer Intern**, Samsung Fire & Marine Insurance, Jun–Aug 2026
 - **Software Engineer Intern**, Nadoomodoo Inc., Jan–Jun 2026
+  - Built full-stack features (TypeScript, React) across Nadooio (website-builder SaaS) and ECSO (CSO-facing ERP), including an AI-provider routing layer for LLM and text-to-image model calls
 - **Undergraduate Researcher**, Financial Big-Data Analysis Laboratory (FBDA Lab), POSTECH, Jun–Jul 2025
+  - Reproduced and extended a factor-and-idiosyncratic VAR (FIVAR) model for large-dimensional volatility matrix estimation on high-frequency S&P 500 data, implementing Huber-LASSO regression in Python/R to handle heavy-tailed returns
 - **Undergraduate Researcher**, Statistics and Data Science Laboratory (SDS Lab), POSTECH, Dec 2024–Feb 2025
+  - Researched diffusion model guidance methods (classifier-free guidance, autoguidance) and proposed a heavy-tailed guidance scheme combined with sigma/weight scheduling to improve sample diversity, validated on toy manifold and Stable Diffusion experiments
 
 ## Awards
 
