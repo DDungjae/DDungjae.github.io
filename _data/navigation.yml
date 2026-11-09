@@ -21,3 +21,6 @@ lectures:
       - title: "MATH442 - Mathematics for AI"
         url: /lectures/math442/
         description: "2026 Fall"
+      - title: "MIT 6.7960 - Deep Learning"
+        url: /lectures/mit6-7960/
+        description: "MIT OCW · Fall 2024"
