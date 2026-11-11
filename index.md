@@ -39,13 +39,11 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
 ## Awards
 
 - **Excellence Award**, The 3rd Wind Power Generation Forecasting AI Competition (BARAM 2026), Korea East-West Power Co., Ltd., Sep 2026
-  - Forecasting the power output of the Taebaek Gadeoksan Wind Farm; ranked 9th among 986 teams
-- **3rd Prize**, POSTECH Undergraduate Research Program (UGRP), Feb 2025
-  - LLM's traffic optimization using prompt engineering and multi-modal features
-- **3rd Prize**, OIBC Big Data Challenge, Dec 2024
-  - Predicting System Marginal Price (SMP) in the Jeju Island electricity market; top 6 among 207 teams
-- **2nd Prize**, Crackathon, Nov 2024
-  - An ideathon proposing new lines of business for global companies; 2nd among 6 teams
+  - Forecasted hourly power output of the Taebaek Gadeoksan Wind Farm; ranked 9th among 986 teams on the final (private) leaderboard
+- **Honorable Mention**, Undergraduate Research Program (UGRP), POSTECH, Feb 2025
+  - LLM traffic optimization using prompt engineering and multi-modal features
+- **Honorable Mention**, OIBC Big Data Challenge, POSTECH Open Innovation Big Data Center (OIBC), Dec 2024
+  - Predicted System Marginal Price (SMP) in the Jeju Island electricity market; ranked 6th among 207 teams
 
 ## Teaching & Mentoring
 
