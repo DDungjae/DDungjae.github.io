@@ -24,11 +24,11 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
 
 - **B.S. in Industrial and Management Engineering**, POSTECH, 2023–present
   - Double major in Mathematics
-- **High School Diploma**, Hana Academy Seoul, 2020–2023
 
 ## Experience
 
 - **Artificial Intelligence Engineer Intern**, Samsung Fire & Marine Insurance, Jun–Aug 2026
+  - Developed AI technologies for applications in the insurance domain
 - **Software Engineer Intern**, Nadoomodoo Inc., Jan–Jun 2026
   - Built full-stack features (TypeScript, React) across Nadooio (website-builder SaaS) and ECSO (CSO-facing ERP), including an AI-provider routing layer for LLM and text-to-image model calls
 - **Undergraduate Researcher**, Financial Big-Data Analysis Laboratory (FBDA Lab), POSTECH, Jun–Jul 2025
@@ -46,6 +46,11 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
   - Predicting System Marginal Price (SMP) in the Jeju Island electricity market; top 6 among 207 teams
 - **2nd Prize**, Crackathon, Nov 2024
   - An ideathon proposing new lines of business for global companies; 2nd among 6 teams
+
+## Teaching & Mentoring
+
+- **Student Mentor, Calculus I**, POSTECH, Spring 2024, Spring 2025
+- **Student Mentor, Calculus II**, POSTECH, Fall 2024, Fall 2025
 
 ## Languages
 
