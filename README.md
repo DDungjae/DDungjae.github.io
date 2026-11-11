@@ -12,6 +12,7 @@ GitHub Pages 에서 그대로 빌드합니다. 주소: **https://DDungjae.github
 | 하고 싶은 것 | 고칠 파일 |
 | :--- | :--- |
 | 소개글, CV (첫 화면) | `index.md` |
+| CV PDF | `tools/cv/cv.html` 고친 뒤 `tools/cv/build_cv.bat` 실행 → `assets/files/Jaewon_Seo_CV.pdf` 갱신 (첫 화면 `index.md` 도 같이 맞추기) |
 | 글 쓰기 | `_posts/YYYY-MM-DD-제목.md` (예시: `_drafts/2026-09-08-example-post.md` 복사) |
 | 프로젝트 추가 | `_projects/이름.md` (아래 예시) |
 | 강의 노트 추가 | `_lectures/math530/이름.md` (front matter 에 `course: MATH530`, `date:`) |

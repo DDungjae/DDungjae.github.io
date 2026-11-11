@@ -82,6 +82,14 @@ grep -c '\\\[' "$F"  # 블록 수식 개수
   전용 처리**이므로 노션 원본에는 넣지 않습니다 (노션 원본은 그냥 읽기 좋은 `|` 그대로 둡니다).
 - 커밋·푸시는 사용자가 명시적으로 올려달라고 했을 때만 합니다.
 
+## CV
+
+- CV 는 두 군데에 있습니다: 첫 화면 `index.md` 와 PDF `assets/files/Jaewon_Seo_CV.pdf`.
+  **CV 를 고치면 항상 둘 다 같이 고칩니다.**
+- PDF 원본은 `tools/cv/cv.html` 입니다. 이걸 고친 뒤 `cmd //c "tools\\cv\\build_cv.bat"`
+  (Chrome/Edge 헤드리스 인쇄)로 PDF 를 다시 만듭니다. PDF 를 직접 고치거나 원본을 레포 밖에 두지 마세요.
+- 다시 만든 뒤 페이지 이미지를 렌더링해서 섹션이 페이지 경계에서 어색하게 잘리지 않았는지 확인합니다.
+
 ## 그 외
 
 - 색인: `README.md` (사람용 빠른 참조), `.claude/skills/notion-import/SKILL.md` (노션 변환 절차),

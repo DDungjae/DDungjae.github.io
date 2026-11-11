@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<!-- CV 원본. 고친 뒤 tools/cv/build_cv.bat 실행 → assets/files/Jaewon_Seo_CV.pdf 갱신. 첫 화면(index.md)의 CV 도 같이 고칠 것. -->
+<meta charset="utf-8">
+<title>Jaewon Seo CV</title>
+<style>
+  @page { size: Letter; margin: 0.6in 0.75in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #111;
+    font-size: 10.5pt;
+    line-height: 1.35;
+  }
+  .name {
+    text-align: center;
+    font-size: 26pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 4pt;
+  }
+  .contact {
+    text-align: center;
+    font-size: 9.5pt;
+    margin-bottom: 14pt;
+  }
+  h2.section {
+    font-size: 10.5pt;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    border-bottom: 1px solid #111;
+    padding-bottom: 2pt;
+    margin: 14pt 0 6pt 0;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .row .left { font-weight: bold; }
+  .row .right { font-style: italic; white-space: nowrap; }
+  .sub {
+    font-style: italic;
+    margin-bottom: 2pt;
+  }
+  ul {
+    margin: 2pt 0 8pt 0;
+    padding-left: 16pt;
+  }
+  li { margin-bottom: 2pt; }
+  .entry { margin-bottom: 6pt; }
+  .entry-noindent { margin-bottom: 2pt; }
+  .skills-line { margin-bottom: 2pt; }
+  .skills-line .label { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div class="name">JAEWON SEO</div>
+<div class="contact">Pohang, Republic of Korea &bull; seojw115@postech.ac.kr &bull; ddungjae.github.io</div>
+
+<h2 class="section">EDUCATION</h2>
+<div class="entry">
+  <div class="row"><span class="left">POSTECH (Pohang University of Science and Technology)</span><span class="right">2023 &ndash; Present</span></div>
+  <div class="sub">B.S. in Industrial and Management Engineering, Double Major in Mathematics</div>
+</div>
+
+<h2 class="section">EXPERIENCE</h2>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Samsung Fire &amp; Marine Insurance &mdash; Artificial Intelligence Engineer Intern</span><span class="right">Jun &ndash; Aug 2026</span></div>
+</div>
+<ul>
+  <li>Developed AI technologies for applications in the insurance domain</li>
+</ul>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Nadoomodoo Inc. &mdash; Software Engineer Intern</span><span class="right">Jan &ndash; Jun 2026</span></div>
+</div>
+<ul>
+  <li>Built full-stack features (TypeScript, React) across Nadooio (website-builder SaaS) and ECSO (CSO-facing ERP), including an AI-provider routing layer for LLM and text-to-image model calls</li>
+</ul>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Financial Big-Data Analysis Laboratory (FBDA Lab), POSTECH &mdash; Undergraduate Researcher</span><span class="right">Jun &ndash; Jul 2025</span></div>
+</div>
+<ul>
+  <li>Reproduced and extended a factor-and-idiosyncratic VAR (FIVAR) model for large-dimensional volatility matrix estimation on high-frequency S&amp;P 500 data, implementing Huber-LASSO regression in Python/R to handle heavy-tailed returns</li>
+</ul>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Statistics and Data Science Laboratory (SDS Lab), POSTECH &mdash; Undergraduate Researcher</span><span class="right">Dec 2024 &ndash; Feb 2025</span></div>
+</div>
+<ul>
+  <li>Researched diffusion model guidance methods (classifier-free guidance, autoguidance) and proposed a heavy-tailed guidance scheme combined with sigma/weight scheduling to improve sample diversity, validated on toy manifold and Stable Diffusion experiments</li>
+</ul>
+
+<h2 class="section">AWARDS</h2>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Excellence Award &mdash; The 3rd Wind Power Generation Forecasting AI Competition (BARAM 2026)</span><span class="right">Sep 2026</span></div>
+  <div class="sub">Korea East-West Power Co., Ltd.</div>
+</div>
+<ul>
+  <li>Forecasted hourly power output of the Taebaek Gadeoksan Wind Farm; ranked 9th among 986 teams on the final (private) leaderboard</li>
+</ul>
+<div class="entry-noindent">
+  <div class="row"><span class="left">3rd Prize &mdash; POSTECH Undergraduate Research Program (UGRP)</span><span class="right">Feb 2025</span></div>
+</div>
+<ul>
+  <li>LLM traffic optimization using prompt engineering and multi-modal features</li>
+</ul>
+<div class="entry-noindent">
+  <div class="row"><span class="left">3rd Prize &mdash; OIBC Big Data Challenge</span><span class="right">Dec 2024</span></div>
+</div>
+<ul>
+  <li>Predicted System Marginal Price (SMP) in the Jeju Island electricity market; ranked 6th among 207 teams</li>
+</ul>
+<div class="entry-noindent">
+  <div class="row"><span class="left">2nd Prize &mdash; Crackathon</span><span class="right">Nov 2024</span></div>
+</div>
+<ul>
+  <li>Ideathon proposing new lines of business for global companies; ranked 2nd among 6 teams</li>
+</ul>
+
+<div style="break-inside: avoid; page-break-inside: avoid;">
+<h2 class="section">SKILLS</h2>
+<div class="skills-line"><span class="label">Machine Learning &amp; Deep Learning:</span> Python, PyTorch, R</div>
+<div class="skills-line"><span class="label">Web Development:</span> TypeScript, React, AWS</div>
+</div>
+
+<h2 class="section">TEACHING &amp; MENTORING</h2>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Student Mentor, Calculus I &mdash; POSTECH</span><span class="right">Spring 2024, Spring 2025</span></div>
+</div>
+<div class="entry-noindent">
+  <div class="row"><span class="left">Student Mentor, Calculus II &mdash; POSTECH</span><span class="right">Fall 2024, Fall 2025</span></div>
+</div>
+
+<h2 class="section">LANGUAGES</h2>
+<div class="row"><span class="left">Korean</span><span class="right">Native</span></div>
+<div class="row"><span class="left">English</span><span class="right">Professional working proficiency &mdash; TEPS 447 (Aug 2026)</span></div>
+
+</body>
+</html>
