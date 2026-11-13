@@ -2,6 +2,7 @@
 title: "Lecture 5: Graph Neural Networks"
 date: 2026-11-09
 course: "mit6-7960"
+order: 5
 excerpt: "Video: Lec 05. Architectures: Graphs"
 tags: ["gnn", "neural-networks", "deep-learning"]
 header:

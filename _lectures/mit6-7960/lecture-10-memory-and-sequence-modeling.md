@@ -2,6 +2,7 @@
 title: "Lecture 10: Memory and Sequence Modeling"
 date: 2026-11-11
 course: "mit6-7960"
+order: 10
 excerpt: "Video: Lec 10. Architectures: Memory"
 tags: ["rnn", "lstm", "deep-learning", "sequence-models"]
 header:

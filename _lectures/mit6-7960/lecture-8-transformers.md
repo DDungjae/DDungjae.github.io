@@ -2,6 +2,7 @@
 title: "Lecture 8: Transformers"
 date: 2026-11-12
 course: "mit6-7960"
+order: 8
 excerpt: "Video: Lec 08. Architectures: Transformers"
 tags: ["transformers", "attention", "deep-learning"]
 header:

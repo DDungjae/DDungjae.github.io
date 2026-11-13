@@ -166,6 +166,19 @@ def split_list(value: str | None) -> list[str]:
     return [v.strip() for v in re.split(r"[,;|]", value) if v.strip()]
 
 
+def extract_order(title: str) -> float | None:
+    """제목의 "Lecture N" / "Week N(-M)" 에서 정렬용 숫자를 뽑습니다.
+    과목 페이지가 업로드 날짜가 아니라 이 숫자로 목록을 정렬합니다."""
+    m = re.match(r"^\s*lecture\s+(\d+)", title, re.I)
+    if m:
+        return float(m.group(1))
+    m = re.match(r"^\s*week\s*(\d+)(?:[-.](\d+))?", title, re.I)
+    if m:
+        major, minor = int(m.group(1)), int(m.group(2) or 0)
+        return major + minor / 100
+    return None
+
+
 def slugify(text: str) -> str:
     text = NOTION_ID_RE.sub("", text)
     text = unicodedata.normalize("NFC", text).lower()
@@ -439,6 +452,9 @@ def main() -> None:
             fm.append(f"date: {date:%Y-%m-%d}")
         if args.type == "lecture":
             fm.append(f"course: {yaml_str(course)}")
+            order = extract_order(title)
+            if order is not None:
+                fm.append(f"order: {order:g}")
         if excerpt:
             fm.append(f"excerpt: {yaml_str(excerpt)}")
         if categories:

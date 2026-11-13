@@ -2,6 +2,7 @@
 title: "Lecture 1: Introduction to Deep Learning"
 date: 2026-11-04
 course: "mit6-7960"
+order: 1
 published: false
 excerpt: "Video: Lec 01. Introduction to Deep Learning"
 tags: ["deep-learning"]

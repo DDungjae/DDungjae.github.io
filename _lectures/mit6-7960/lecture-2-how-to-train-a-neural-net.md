@@ -2,6 +2,7 @@
 title: "Lecture 2: How to train a neural net"
 date: 2026-11-04
 course: "mit6-7960"
+order: 2
 excerpt: "Video: Lec 02. How to Train a Neural Net"
 tags: ["deep-learning", "optimization", "neural-networks"]
 header:

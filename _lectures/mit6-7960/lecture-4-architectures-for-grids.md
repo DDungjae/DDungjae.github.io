@@ -2,6 +2,7 @@
 title: "Lecture 4: Architectures for Grids"
 date: 2026-11-09
 course: "mit6-7960"
+order: 4
 excerpt: "Video: Lec 04. Architectures: Grids"
 tags: ["cnn", "neural-networks", "deep-learning"]
 header:
