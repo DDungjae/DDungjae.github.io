@@ -2,6 +2,7 @@
 title: "Week3-1: Unbiased Condition of SGD"
 date: 2026-09-22
 course: "MATH442"
+order: 3.01
 excerpt: "SGD를 편향 없이 수행하기 위한 조건, Gradient Descent에서의 수렴 속도"
 tags: ["optimization", "machine-learning"]
 ---

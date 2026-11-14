@@ -2,6 +2,7 @@
 title: "Week2-1: Moment Generating Function, Exponential Families"
 date: 2026-09-15
 course: "MATH530"
+order: 2.01
 excerpt: "MGF와 moment로 확률 분포 추정하기, 확률 분포를 exponential family 형태로 표현하기"
 ---
 

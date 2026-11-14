@@ -2,6 +2,7 @@
 title: "Week 5-1: Slutsky’s Theorem"
 date: 2026-10-06
 course: "MATH530"
+order: 5.01
 excerpt: "확률 분포의 수렴성의 활용"
 tags: ["statistics"]
 ---

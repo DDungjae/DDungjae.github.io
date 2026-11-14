@@ -2,6 +2,7 @@
 title: "Week2-1: Eckart-Young Theorem"
 date: 2026-09-15
 course: "MATH442"
+order: 2.01
 excerpt: "복잡한 행렬을 쉬운 행렬로 쪼개는 방법"
 tags: ["linear-algebra"]
 ---

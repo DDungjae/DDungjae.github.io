@@ -2,6 +2,7 @@
 title: "Week0: Overview"
 date: 2026-09-08
 course: "MATH442"
+order: 0
 excerpt: "수학을 모르고 AI를 할 수 있을까?"
 ---
 

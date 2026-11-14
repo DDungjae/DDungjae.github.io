@@ -2,6 +2,7 @@
 title: "Week3-1: Sampling from Normal Distribution"
 date: 2026-09-22
 course: "MATH530"
+order: 3.01
 excerpt: "정규분포에서 파생되는 다양한 분포"
 tags: ["statistics"]
 ---

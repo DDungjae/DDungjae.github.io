@@ -2,6 +2,7 @@
 title: "Week4-1: AdaGrad"
 date: 2026-09-29
 course: "MATH442"
+order: 4.01
 excerpt: "AdaGrad가 GD 보다 좋은 성능을 보이는 조건"
 tags: ["optimization", "machine-learning", "statistics"]
 ---

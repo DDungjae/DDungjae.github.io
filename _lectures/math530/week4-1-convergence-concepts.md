@@ -2,6 +2,7 @@
 title: "Week4-1: Convergence concepts"
 date: 2026-09-29
 course: "MATH530"
+order: 4.01
 excerpt: "확률변수가 수렴한다는 것을 어떻게 표현할 수 있을까?"
 tags: ["statistics"]
 ---

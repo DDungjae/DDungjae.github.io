@@ -2,6 +2,7 @@
 title: "Week1-1: Set Theory, Basics of Probability Theory"
 date: 2026-09-10
 course: "MATH530"
+order: 1.01
 excerpt: "확률을 수학적으로 엄밀하게 정의하는 방법"
 ---
 

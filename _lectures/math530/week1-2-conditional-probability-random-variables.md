@@ -2,6 +2,7 @@
 title: "Week1-2: Conditional Probability and Independence, Random Variables, Distribution Functions, Density and Mass Functions"
 date: 2026-09-10
 course: "MATH530"
+order: 1.02
 excerpt: "확률변수, 밀도함수, 질량함수 등 확률에 대한 다양한 함수"
 ---
 

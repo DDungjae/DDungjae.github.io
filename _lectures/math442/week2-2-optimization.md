@@ -2,6 +2,7 @@
 title: "Week2-2: Optimization"
 date: 2026-09-17
 course: "MATH442"
+order: 2.02
 excerpt: "인공신경망이 함수를 근사하는 원리와 손실함수를 최적화 하는 방법"
 tags: ["optimization", "machine-learning"]
 ---

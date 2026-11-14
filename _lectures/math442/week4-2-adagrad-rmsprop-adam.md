@@ -2,6 +2,7 @@
 title: "Week4-2: AdaGrad,RMSProp, Adam"
 date: 2026-10-01
 course: "MATH442"
+order: 4.02
 excerpt: "GD, AdaGrad, RMSProp, Adam으로 이어지는 최적화 기법의 발전"
 tags: ["optimization", "machine-learning", "statistics"]
 ---

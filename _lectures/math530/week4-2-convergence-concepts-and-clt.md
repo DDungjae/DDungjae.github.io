@@ -2,6 +2,7 @@
 title: "Week4-2: Convergence Concepts and CLT"
 date: 2026-10-01
 course: "MATH530"
+order: 4.02
 excerpt: "확률 분포의 수렴과 중심극한정리"
 tags: ["statistics"]
 ---

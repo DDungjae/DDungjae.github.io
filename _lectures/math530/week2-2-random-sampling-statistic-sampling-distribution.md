@@ -2,6 +2,7 @@
 title: "Week2-2: Random Sampling, Statistic, Sampling Distribution"
 date: 2026-09-17
 course: "MATH530"
+order: 2.02
 excerpt: "샘플링- 부분에서 전체에 대한 정보를 얻어내는 방법"
 ---
 

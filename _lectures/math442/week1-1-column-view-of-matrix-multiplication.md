@@ -2,6 +2,7 @@
 title: "Week1-1: Column View of Matrix Multiplication"
 date: 2026-09-10
 course: "MATH442"
+order: 1.01
 excerpt: "행렬곱을 열 단위로 바라보는 새로운 시각"
 tags: ["linear-algebra"]
 ---
