@@ -228,3 +228,46 @@ Lu_i&=\lambda_i u_i
 $$
 
 Graph laplacian에 대해 고유값 분해를 수행해 eigen vector를 구한 후 node마다의 위치를 표현하는 벡터를 구성한다.
+
+## Autoregressive models
+
+Autoregressive model은 시퀀스로 주어진 데이터에서, 이전 시점까지의 데이터를 조건부로 삼아 다음 시퀀스의 확률을 계산한다.
+
+$$
+\begin{aligned}
+p(x_1,\ldots,x_T)&=\prod_{t=1}^{T}p(x_t\mid x_{<t})\\
+p(\text{Once upon a time})&=p(\text{Once})p(\text{upon}\mid\text{Once})p(\text{a}\mid\text{Once, upon}) p(\text{time}\mid\text{Once, upon, a})
+\end{aligned}
+$$
+
+Transformer를 사용해서도 이러한 autoregressive model을 구성할 수 있다. 모델 학습시에는 정답 시퀀스가 주어졌을 때 이전까지의 token을 입력 받아 다음 token을 예측하도록 학습을 한다.
+
+$$
+\mathcal L(\theta)
+=
+-\sum_{t=1}^{T}
+\log p_\theta(x_t\mid x_{<t})
+$$
+
+이와 같이 각 시점의 token에 대한 cross-entropy를 최소화하도록 학습되는 것이다. 하지만, 시퀀스를 생성할 때에는 학습한 확률 분포를 바탕으로 가장 확률이 높은 단어를 출력한다.
+
+### Causal self-attention
+
+![GPT architecture: stacked transformer blocks with masked (causal) multi-head self-attention](/assets/images/lecture-8-transformers/image-4.png)
+
+Self-attention은 모든 시퀀스 내부의 token 간의 관계를 학습할 수 있도록 한다. 하지만, 샘플링을 할 때에는, 이후 token은 모른 채로 샘플링이 수행되어야 하는데 이를 위해서 GPT에서는 causal self-attention을 사용한다. 위의 그림에서는 GPT의 구조를 보여주는데 GPT는 여러 개의 transformer block을 쌓아서 구성하지만 각 self-attention에서 이후 token을 참조하지 않도록 제한한다.
+
+$$
+o_i=\sum_{j=1}^{i}\alpha_{ij}v_j
+$$
+
+이와 같이 $$i$$번째 token의 attention은 $$i$$ 이전까지의 token들과만 attention이 계산되는 것이다.
+
+$$
+\begin{aligned}
+A&=\operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M\right)\\
+M_{ij}&=\begin{cases}0,&j\le i\\-\infty,&j>i\end{cases}
+\end{aligned}
+$$
+
+이는 self-attention에 mask를 추가하는 것으로 구현할 수 있다. Mask는 다음과 같이 구성이 되는데 $$i$$ 이후 token에 아주 작은 값을 부여하면 softmax를 적용했을 때 해당 위치의 weight가 0이 된다.
