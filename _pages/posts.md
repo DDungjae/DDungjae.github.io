@@ -1,5 +1,5 @@
 ---
-# 글 목록 페이지. _posts/ 의 글이 연도별로 자동 정리됩니다. 손댈 것 없음.
+# 글 목록 페이지. _posts/ 의 글이 연도 구분 없이 최신순으로 나열됩니다 (_layouts/posts.html 오버라이드). 손댈 것 없음.
 title: "Paper Review"
 permalink: /posts/
 layout: posts

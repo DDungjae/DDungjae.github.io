@@ -116,9 +116,7 @@ w_{i+1}&=w_i+v_{i+1}
 \end{aligned}
 $$
 
-SGD를 기반으로 하되 momentum과 weight decay term을 추가해 파라미터를 업데이트한다. Momentum 항은 이전 파라미터의 업데이트 방향을 반영해 진동을 완화하는 효과가 있고 weight decay 항은 weight 크기에 대한 regularization 효과가 있다. 학습 과정에서 training error 감소에 실제로 효과가 있었다고 한다.
-
-모든 레이어에 동일한 learning rate를 적용했으며 초기값은 0.01로 설정했다. Validation error가 더 이상 개선되지 않으면 learning rate를 10배 줄였으며, 학습이 종료되기 전까지 총 3번 줄였다고 한다.
+SGD를 기반으로 하되 momentum과 weight decay term을 추가해 파라미터를 업데이트한다. Momentum 항은 이전 파라미터의 업데이트 방향을 반영해 진동을 완화하는 효과가 있고 weight decay 항은 weight 크기에 대한 regularization 효과가 있다. 학습 과정에서 training error 감소에 실제로 효과가 있었다고 한다. 또한 모든 레이어에 동일한 learning rate를 적용했으며 초기값은 0.01로 설정했다. Validation error가 더 이상 개선되지 않으면 learning rate를 10배 줄였으며, 학습이 종료되기 전까지 총 3번 줄였다고 한다.
 
 ## Results
 
