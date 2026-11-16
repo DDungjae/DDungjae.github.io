@@ -17,6 +17,8 @@ $$
 \end{aligned}
 $$
 
+Slutsky theorem은 분포 수렴하는 수열과 확률 수렴하는 수열에 대해서 각 항의 합이나 곱이 분포 수렴한다는 것을 보여준다. 합의 경우에 대한 증명은 아래와 같이 보일 수 있다.
+
 $$
 \begin{aligned}
 &\text{pf (i)) The CDF of }X\text{ is }F_X\text{, and }F_X\text{ has at most countably many discontinuities.}\\
@@ -41,3 +43,5 @@ F_{X_n+Y_n}(x) &= P(X_n+Y_n\le x)\\
 &\Rightarrow \lim_{n\to\infty}F_{X_n+Y_n}(x) = F_X(x-a) = F_{X+a}(x)\text{, so }X_n+Y_n \xrightarrow{d} X+a.
 \end{aligned}
 $$
+
+Slutsky theorem이 적용되는 예시로 다음과 같은 경우를 볼 수 있다. $$S_n^2$$가 sample variance이고, 이때 $$\frac{\bar{X}_n-\mu}{S_n/\sqrt{n}}$$의 limit distribution을 구하고 싶다고 하자. 이 값은 $$\frac{\bar{X}_n-\mu}{S_n/\sqrt{n}}=\frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}}\cdot\frac{\sigma}{S_n}$$으로 나누어 쓸 수 있다. CLT에 의해 $$\frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}}$$은 $$\mathcal{N}(0, 1)$$으로 분포 수렴하고, $$S_n^2$$이 $$\sigma^2$$로 확률 수렴하기 때문에 $$\frac{\sigma}{S_n}$$은 1로 확률 수렴한다. 따라서 Slutsky theorem의 (ii)에 의해 전체는 $$\mathcal{N}(0, 1)$$으로 분포 수렴하게 된다.
