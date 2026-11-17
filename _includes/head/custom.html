@@ -14,12 +14,21 @@
         underbar: ["\\underline{#1}", 1]
       }
     },
+    // 블록 수식이 폭을 넘으면 가로 스크롤 대신 줄바꿈합니다 (MathJax 4부터 지원; 3는 이 기능이
+    // 없어서 2026-11-17 전에는 CSS overflow-x 로 스크롤만 가능했습니다). inline은 Safari에서
+    // 줄바꿈이 안 되는 알려진 버그가 있어 건드리지 않고, display 수식만 켭니다.
+    chtml: {
+      displayOverflow: "linebreak",
+      linebreaks: {
+        width: "100%"
+      }
+    },
     options: {
       skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
     }
   };
 </script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
 <!-- SEO/AEO: 구조화 데이터(JSON-LD). 검색엔진과 AI 검색(Google AI Overview, Perplexity 등)이
      저자·발행일·주제를 더 정확히 뽑아가도록 돕습니다. 글/노트/프로젝트에는 Article 스키마를 넣습니다.
