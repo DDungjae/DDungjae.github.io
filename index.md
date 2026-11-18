@@ -1,6 +1,7 @@
 ---
 # 첫 화면(About). 소개글과 CV 를 여기에 씁니다.
-#  - 항목 형식: "- **학위/직책/수상명**, 기관, 기간" 한 줄, 세부 사항은 그 아래 "  - " 로 들여쓴 항목
+#  - 항목 형식: "- **학위/직책/수상명, 기관, 기간**" 한 줄 전체를 볼드로, 세부 사항은 그 아래
+#    "  - " 로 들여쓴 항목 (볼드 아님)
 layout: single
 permalink: /
 title: "About"
@@ -22,36 +23,36 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
 
 ## Education
 
-- **B.S. in Industrial and Management Engineering**, POSTECH, 2023–present
+- **B.S. in Industrial and Management Engineering, POSTECH, 2023–present**
   - Double major in Mathematics
 
 ## Experience
 
-- **Artificial Intelligence Engineer Intern**, Samsung Fire & Marine Insurance, Jun–Aug 2026
+- **Artificial Intelligence Engineer Intern, Samsung Fire & Marine Insurance, Jun–Aug 2026**
   - Developed AI technologies for applications in the insurance domain
-- **Software Engineer Intern**, Nadoomodoo Inc., Jan–Jun 2026
+- **Software Engineer Intern, Nadoomodoo Inc., Jan–Jun 2026**
   - Built full-stack features (TypeScript, React) across Nadooio (website-builder SaaS) and ECSO (CSO-facing ERP), including an AI-provider routing layer for LLM and text-to-image model calls
-- **Undergraduate Researcher**, Financial Big-Data Analysis Laboratory (FBDA Lab), POSTECH, Jun–Jul 2025
+- **Undergraduate Researcher, Financial Big-Data Analysis Laboratory (FBDA Lab), POSTECH, Jun–Jul 2025**
   - Reproduced and extended a factor-and-idiosyncratic VAR (FIVAR) model for large-dimensional volatility matrix estimation on high-frequency S&P 500 data, implementing Huber-LASSO regression in Python/R to handle heavy-tailed returns
-- **Undergraduate Researcher**, Statistics and Data Science Laboratory (SDS Lab), POSTECH, Dec 2024–Feb 2025
+- **Undergraduate Researcher, Statistics and Data Science Laboratory (SDS Lab), POSTECH, Dec 2024–Feb 2025**
   - Researched diffusion model guidance methods (classifier-free guidance, autoguidance) and proposed a heavy-tailed guidance scheme combined with sigma/weight scheduling to improve sample diversity, validated on toy manifold and Stable Diffusion experiments
 
 ## Awards
 
-- **Excellence Award**, The 3rd Wind Power Generation Forecasting AI Competition (BARAM 2026), Korea East-West Power Co., Ltd., Sep 2026
+- **Excellence Award, The 3rd Wind Power Generation Forecasting AI Competition (BARAM 2026), Korea East-West Power Co., Ltd., Sep 2026**
   - Forecasted hourly power output of the Taebaek Gadeoksan Wind Farm; ranked 9th among 986 teams on the final (private) leaderboard
-- **Honorable Mention**, Undergraduate Research Program (UGRP), POSTECH, Feb 2025
+- **Honorable Mention, Undergraduate Research Program (UGRP), POSTECH, Feb 2025**
   - LLM traffic optimization using prompt engineering and multi-modal features
-- **Honorable Mention**, OIBC Big Data Challenge, POSTECH Open Innovation Big Data Center (OIBC), Dec 2024
+- **Honorable Mention, OIBC Big Data Challenge, POSTECH Open Innovation Big Data Center (OIBC), Dec 2024**
   - Predicted System Marginal Price (SMP) in the Jeju Island electricity market; ranked 6th among 207 teams
 
 ## Teaching & Mentoring
 
-- **Student Mentor, Calculus I**, POSTECH, Spring 2024, Spring 2025
-- **Student Mentor, Calculus II**, POSTECH, Fall 2024, Fall 2025
+- **Student Mentor, Calculus I, POSTECH, Spring 2024, Spring 2025**
+- **Student Mentor, Calculus II, POSTECH, Fall 2024, Fall 2025**
 
 ## Languages
 
-- **Korean**, native
-- **English**, professional working proficiency
+- **Korean, native**
+- **English, professional working proficiency**
   - TEPS 447 (Aug 2026)

@@ -1,0 +1,13 @@
+---
+# 다크 모드용 스타일시트. main.scss 와 같은 구조지만 스킨만 "dark" 로 고정합니다.
+# _includes/head/custom.html 의 토글 버튼이 <link id="theme-dark-css"> 의 disabled 속성을
+# 켜고 끄는 방식으로 이 파일과 main.css 를 전환합니다 (둘 다 항상 로드되어 있음).
+---
+@charset "utf-8";
+
+// main.scss 와 같은 값. 두 파일에서 같은 폭을 쓰지 않으면 모드 전환 시 레이아웃이 들썩입니다.
+$max-width: 1440px;
+
+@import "minimal-mistakes/skins/dark";
+@import "minimal-mistakes";
+@import "site-overrides"; // 스킨과 무관한 이 사이트만의 조정 (main.scss 와 공유)

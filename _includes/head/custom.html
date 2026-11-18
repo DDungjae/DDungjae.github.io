@@ -30,6 +30,58 @@
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
+<!-- 라이트/다크 모드: 두 스타일시트(main.css, dark.css)를 항상 둘 다 불러두고, <link disabled>
+     속성을 켜고 꺼서 전환합니다 (색 값이 빌드 시점에 고정되는 Sass 스킨 구조라 런타임에 색만
+     바꿀 수 없어서 이렇게 합니다). 저장된 선택이 없으면 OS의 prefers-color-scheme 를 따릅니다.
+     깜빡임(FOUC) 방지를 위해 <head> 안에서 동기적으로, 가능한 한 빨리 적용합니다. -->
+<link rel="stylesheet" href="{{ '/assets/css/dark.css' | relative_url }}" id="theme-dark-css" disabled>
+<script>
+  (function () {
+    var KEY = "theme-preference";
+    function getStored() {
+      try {
+        var v = localStorage.getItem(KEY);
+        return (v === "light" || v === "dark") ? v : null;
+      } catch (e) { return null; }
+    }
+    function preferredByOS() {
+      return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    }
+    function apply(theme) {
+      var darkCss = document.getElementById("theme-dark-css");
+      if (darkCss) darkCss.disabled = (theme !== "dark");
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+    window.__theme = getStored() || preferredByOS();
+    apply(window.__theme);
+    window.__setTheme = function (theme) {
+      window.__theme = theme;
+      apply(theme);
+      try { localStorage.setItem(KEY, theme); } catch (e) {}
+      var btn = document.getElementById("theme-toggle-btn");
+      if (btn) btn.innerHTML = window.__themeIcons[theme === "dark" ? "sun" : "moon"];
+    };
+    window.__themeIcons = {
+      sun: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM4.22 4.22a1 1 0 0 1 1.42 0l1.41 1.41a1 1 0 1 1-1.41 1.41L4.22 5.64a1 1 0 0 1 0-1.42zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.41a1 1 0 0 1-1.42 1.42l-1.41-1.42a1 1 0 0 1 0-1.41zM1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM4.22 19.78a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 1 1 1.41 1.42l-1.41 1.41a1 1 0 0 1-1.41 0zM16.95 4.22a1 1 0 0 1 1.41 0 1 1 0 0 1 0 1.42l-1.41 1.41a1 1 0 1 1-1.42-1.41z"/></svg>',
+      moon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.273c-4.508 0-8.166-3.658-8.166-8.166 0-1.4.354-2.717.976-3.868a.75.75 0 0 0-.922-1.074A10.083 10.083 0 0 0 2 10.083C2 15.56 6.44 20 11.917 20a10.083 10.083 0 0 0 9.9-8.093.75.75 0 0 0-1.075-.862z"/></svg>'
+    };
+  })();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var nav = document.getElementById("site-nav");
+    if (!nav || document.getElementById("theme-toggle-btn")) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "theme-toggle-btn";
+    btn.setAttribute("aria-label", "라이트/다크 모드 전환");
+    btn.innerHTML = window.__themeIcons[window.__theme === "dark" ? "sun" : "moon"];
+    btn.addEventListener("click", function () {
+      window.__setTheme(window.__theme === "dark" ? "light" : "dark");
+    });
+    nav.appendChild(btn);
+  });
+</script>
+
 <!-- SEO/AEO: 구조화 데이터(JSON-LD). 검색엔진과 AI 검색(Google AI Overview, Perplexity 등)이
      저자·발행일·주제를 더 정확히 뽑아가도록 돕습니다. 글/노트/프로젝트에는 Article 스키마를 넣습니다.
      홈(About)은 테마가 이미 기본 Person 구조화 데이터를 내보내므로(_includes/seo.html, "end
