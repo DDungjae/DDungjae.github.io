@@ -23,7 +23,7 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
 
 ## Education
 
-- **B.S. in Industrial and Management Engineering, POSTECH, 2023–present**
+- **B.S. in Industrial and Management Engineering, POSTECH, 2023–Aug 2027 (expected)**
   - Double major in Mathematics
 
 ## Experience
@@ -42,7 +42,7 @@ and my [CV (PDF)](/assets/files/Jaewon_Seo_CV.pdf) below. The fastest way to rea
 - **Excellence Award, The 3rd Wind Power Generation Forecasting AI Competition (BARAM 2026), Korea East-West Power Co., Ltd., Sep 2026**
   - Forecasted hourly power output of the Taebaek Gadeoksan Wind Farm; ranked 9th among 986 teams on the final (private) leaderboard
 - **Honorable Mention, Undergraduate Research Program (UGRP), POSTECH, Feb 2025**
-  - LLM traffic optimization using prompt engineering and multi-modal features
+  - Led a 4-person team optimizing traffic-signal phase durations at a 6-way intersection simulated in SUMO, using an LLM with TextGrad (natural-language feedback as textual gradients)
 - **Honorable Mention, OIBC Big Data Challenge, POSTECH Open Innovation Big Data Center (OIBC), Dec 2024**
   - Predicted System Marginal Price (SMP) in the Jeju Island electricity market; ranked 6th among 207 teams
 
