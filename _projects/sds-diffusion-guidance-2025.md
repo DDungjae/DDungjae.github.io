@@ -1,5 +1,5 @@
 ---
-title: "SDS Lab 연구 인턴 - Diffusion Guidance"
+title: "2024 겨울 - SDS 연구실 연구참여"
 excerpt: "Diffusion model의 guidance network를 같은 모델의 더 넓게 퍼진 분포로 두는 heavy-tail guidance를 제안하고, sigma scaling과 weight scheduler를 결합해 toy manifold와 Stable Diffusion에서 실험"
 tags: ["diffusion", "generative-model", "deep-learning"]
 header:

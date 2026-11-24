@@ -1,5 +1,5 @@
 ---
-title: "FBDA Lab 논문 리뷰 및 재현 - FIVAR"
+title: "2025 여름 - FBDA 연구실 연구참여"
 excerpt: "고빈도 금융 데이터의 대형 변동성 행렬 예측 모형 FIVAR 논문 리뷰, S&P 500 200종목으로 POET-PRVM·OLS 결과 재현"
 tags: ["time-series", "statistics", "finance"]
 header:
