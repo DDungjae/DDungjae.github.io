@@ -6,7 +6,7 @@ header:
   teaser: /assets/images/sds-diffusion-guidance-2025/slide-18.png
 ---
 
-2024년 12월~2025년 2월에 포스텍 산업경영공학과 Statistical Data Science(SDS) 연구실에서 연구 참여를 했다. 2학년을 막 마친 때라 전공지식이 많이 부족한 상태였는데, 다행히 사수님께서 진행하시던 연구와 관련된 논문을 읽고 간단한 실험을 해볼 수 있었다. 수학적 배경이 많이 필요한 논문이 다수 있었는데 수식 위주로 최대한 이해해보려고 했고, 연구 참여 마지막에는 여러 편의 논문을 읽고 어느 정도 유의미한 결과도 얻을 수 있었다. 또한 이때를 계기로 머신러닝, 딥러닝을 연구하려면 수학적 배경이 탄탄해야 함을 느끼고 수학을 복수전공으로 선택했다. 지금 돌아봤을 때 아주 잘한 선택이었다고 생각한다. 과목을 더 수강해야 하는 것은 힘들지만, 수학 과목이 오히려 본전공인 산업경영공학보다 잘 맞게 느껴지기도 하고 수식이나 증명에 익숙해지면서 부담도 없어졌다.
+2024년 12월~2025년 2월에 포스텍 산업경영공학과 Statistics and Data Science(SDS) 연구실에서 연구 참여를 했다. 2학년을 막 마친 때라 전공지식이 많이 부족한 상태였는데, 다행히 사수님께서 진행하시던 연구와 관련된 논문을 읽고 간단한 실험을 해볼 수 있었다. 수학적 배경이 많이 필요한 논문이 다수 있었는데 수식 위주로 최대한 이해해보려고 했고, 연구 참여 마지막에는 여러 편의 논문을 읽고 어느 정도 유의미한 결과도 얻을 수 있었다. 또한 이때를 계기로 머신러닝, 딥러닝을 연구하려면 수학적 배경이 탄탄해야 함을 느끼고 수학을 복수전공으로 선택했다. 지금 돌아봤을 때 아주 잘한 선택이었다고 생각한다. 과목을 더 수강해야 하는 것은 힘들지만, 수학 과목이 오히려 본전공인 산업경영공학보다 잘 맞게 느껴지기도 하고 수식이나 증명에 익숙해지면서 부담도 없어졌다.
 
 연구 참여 기간 동안 이미지 생성 모델인 diffusion model과 관련해 text-to-image 생성에 사용되는 guidance 방법에 초점을 맞춰 classifier-free guidance(CFG)와 autoguidance 등에 대한 논문을 읽었다. Guidance scale이나 scheduling은 이미지 생성의 다양성과 품질에 영향을 미치는데, 이미지 생성 다양성을 위해 추가 학습 없이 사용할 수 있는 heavy-tail guidance 방법을 toy example과 Stable Diffusion에서 실험해보았다.
 
@@ -99,6 +99,8 @@ $$k = 1.00$$이면 $$p_0 = p_1$$이라 guidance가 없는 것과 같다. $$k$$�
 ![슬라이드 17: weight scheduler와 sigma scaling의 결합](/assets/images/sds-diffusion-guidance-2025/slide-17.png)
 
 다음으로 weight scheduler를 추가해 변화를 관찰했다. Toy example의 32 timestep 동안 guidance weight를 cosine 곡선을 따라 scheduling한다. 위 식에서 $$t$$는 $$T$$에서 0으로 줄어들기 때문에, $$w_t$$는 denoising 초반에 0에서 시작해 끝에서 $$\text{guidance}_{\max}$$에 도달한다. 초반의 강한 guidance가 샘플링 다양성을 저하한다는 Wang et al.(2024)의 결과를 반영한 형태다. 이때 guidance network를 $$k=1.20$$으로 scaling한 버전으로 고정한 뒤, guidance 크기에 따른 toy example의 샘플링 결과를 확인했다.
+
+여기서 weight scheduler만 단독으로 쓸 수는 없다. Main network와 guidance network가 같은 모델이고 $$k=1$$이면 $$p_1/p_0 = 1$$이라서, $$w$$를 어떻게 바꿔도 guidance 항이 0이 된다. 그래서 sigma scaling과 weight scheduler를 반드시 함께 써야 한다.
 
 ![슬라이드 18: k=1.20에서 guidance_max를 바꿨을 때 샘플 분포](/assets/images/sds-diffusion-guidance-2025/slide-18.png)
 
