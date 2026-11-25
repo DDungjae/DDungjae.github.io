@@ -46,6 +46,8 @@ $$(1-p)^n>0$$이므로 $$\sum_{t=0}^n g(t)\binom{n}{t}r^t=0$$이 모든 $$r\in(0
 
 Ancillary statistic과 complete statistic 사이에는 유의미한 관계가 있다. 파라미터 $$\theta$$에 대한 complete sufficient statistic $$T(\underbar{X})$$와 ancillary statistic $$S(\underbar{X})$$는 independent하며 이를 Basu’s theorem이라고 한다. Basu’s theorem은 두 통계량의 joint distribution이나 Jacobian을 구할 필요 없이 completeness와 ancillarity만 알면 쉽게 독립성을 판단할 수 있다는 의의를 지닌다.
 
+추가적으로 다음과 같은 theorem도 있다. Minimal sufficient statistic이 존재한다면 모든 complete sufficient statistic은 minimal sufficient statistic이 된다. 또한 서로 다른 두 minimal sufficient statistic $$T, T'$$가 있으면 $$T'=\psi(T)$$를 만족하는 일대일 함수 $$\psi$$가 존재한다.
+
 ## Complete and Minimal Sufficient Statistics in Exponential Family
 
 이전에 exponential family에 속하는 분포에 대해서는 sufficient statistic을 쉽게 구할 수 있음을 알았다. Exponential family에서는 complete minimal sufficient statistic 또한 바로 구할 수 있다.
@@ -55,3 +57,5 @@ f_\theta(x)=h(x)c(\theta)\exp\left[\sum_{i=1}^k w_i(\theta)t_i(x)\right]
 $$
 
 위와 같은 exponential family에서 $$T(\underbar{X})=\left(\sum_{j=1}^n t_1(X_j), \dots, \sum_{j=1}^n t_k(X_j)\right)$$는 파라미터 $$\theta$$에 대한 sufficient statistic이 된다고 했었다. 여기에 조건이 하나만 더 추가되면 이 통계량은 complete sufficient statistic이 된다. 필요한 조건은 $$\{(w_1(\theta), \dots, w_k(\theta)) : \theta\in\Theta\}$$가 $$\mathbb{R}^k$$ 공간에서 open subset을 포함해야 한다는 점이다.
+
+이에 대한 예시로 $$\text{Binomial}(n, \theta)$$를 생각해보자. $$f_\theta(x)=\binom{n}{x}\theta^x(1-\theta)^{n-x}=\binom{n}{x}(1-\theta)^n\exp[x\log{\frac{\theta}{1-\theta}}]$$와 같이 exponential family 형태로 작성 가능하다. 여기서 $$t_1(x)=x$$이고 $$\mathcal{H}=\{\log\frac{\theta}{1-\theta} : \theta \in (0, 1)\}=(-\infty, \infty)$$이므로 $$\mathbb{R}$$에서 open subset을 포함한다. 따라서 위의 theorem에 따라 $$T(\underbar{X})=\sum X_i$$는 complete sufficient statistic이 된다.
